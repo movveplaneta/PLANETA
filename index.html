@@ -327,13 +327,6 @@ atOptions={
     </div>
 </div>
 
-<div id="pdfModal" class="pdf-modal">
-    <div class="pdf-box">
-        <button class="close-btn" onclick="closePDF()">✕</button>
-        <iframe src="Presentacion-Movve-Wallet.pdf"></iframe>
-    </div>
-</div>
-
 <script>
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
@@ -351,12 +344,15 @@ function closeVideo(){
  document.getElementById('videoModal').style.display='none';
 }
 
-function openPDF(){document.getElementById('pdfModal').style.display='flex'}
-function closePDF(){document.getElementById('pdfModal').style.display='none'}
+// Nueva función para abrir PDF en pestaña nueva
+function openPDF(){
+    window.open('Presentacion-Movve-Wallet.pdf', '_blank');
+}
 </script>
 
 </body>
 </html>
+
 
 
 
