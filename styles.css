@@ -208,7 +208,7 @@ body {
     color: #4CFF2E;
 }
 
-/* ================= CARDS ================= */
+/* ================= CARDS & ANIMACIONES ECOSISTEMA ================= */
 .cards {
     max-width: 1100px;
     margin: auto;
@@ -217,17 +217,41 @@ body {
     gap: 25px;
 }
 
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .card {
     background: rgba(255,255,255,0.05);
     padding: 30px;
     border-radius: 18px;
     backdrop-filter: blur(6px);
     transition: 0.3s ease;
+    animation: floatCard 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
 }
 
-.card:hover {
+/* Efectos de Brillo Neón */
+.card-glow-green:hover { 
     transform: translateY(-10px);
-    box-shadow: 0 0 25px rgba(0,255,156,0.25);
+    box-shadow: 0 0 30px rgba(76, 255, 46, 0.4); 
+    border: 1px solid #4CFF2E; 
+}
+.card-glow-blue:hover { 
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.4); 
+    border: 1px solid #0096FF; 
+}
+.card-glow-purple:hover { 
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); 
+    border: 1px solid #9D00FF; 
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
 /* ================= GALERÍA ================= */
@@ -398,7 +422,7 @@ footer span {
     right: 0;
 }
 
-/* ================= ANIMACIONES ================= */
+/* ================= ANIMACIONES EXTRAS ================= */
 @keyframes floatLogo {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -406,7 +430,7 @@ footer span {
 
 /* ================= GALERÍA DE VIDEOS ================= */
 .video-gallery {
-    max-width: 1000x;
+    max-width: 1000px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
@@ -456,7 +480,7 @@ footer span {
 }
 
 .video-box video {
-    width: 50%;
+    width: 100%;
     border-radius: 20px;
 }
 
@@ -473,50 +497,6 @@ footer span {
   text-shadow: 0 0 20px rgba(76,255,46,0.4);
 }
 
-/* CONTENEDOR */
-.slideshow {
-  max-width: 700px;
-  margin: auto;
-  background: #0b0b0b;
-  padding: 40px;
-  border-radius: 25px;
-  box-shadow: 0 0 40px rgba(76,255,46,0.35);
-}
-
-/* SLIDES */
-.slide {
-  display: none;
-  animation: fade 1s ease;
-}
-
-.slide.activo {
-  display: block;
-}
-
-.slide img {
-  width: 100%;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-
-.slide p {
-  color: #fff;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.slide span {
-  color: #4CFF2E;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* ANIMACIÓN */
-@keyframes fade {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
 .video-resultados {
     max-width: 500px;
     margin: 0 auto;
@@ -530,8 +510,6 @@ footer span {
     height: auto;
     display: block;
 }
-
-
 
 
 
