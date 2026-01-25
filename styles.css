@@ -1,1917 +1,535 @@
 /* ================= RESET GENERAL ================= */
-
-
-
 * {
-
-
-
     margin: 0;
-
-
-
     padding: 0;
-
-
-
     box-sizing: border-box;
-
-
-
     font-family: 'Segoe UI', sans-serif;
-
-
-
 }
-
-
-
-
-
-
 
 body {
-
-
-
     background: #000;
-
-
-
     color: #fff;
-
-
-
     overflow-x: hidden;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= FONDO GALAXIA VIVA ================= */
-
-
-
 .galaxy-bg {
-
-
-
     position: fixed;
-
-
-
     inset: 0;
-
-
-
     z-index: -2;
-
-
-
     background: radial-gradient(circle at center, #0f2027 0%, #000 100%);
-
-
-
     overflow: hidden;
-
-
-
 }
-
-
-
-
-
-
 
 /* Nebulosas dinámicas */
-
-
-
 .galaxy-bg::before {
-
-
-
     content: "";
-
-
-
     position: absolute;
-
-
-
     width: 200%;
-
-
-
     height: 200%;
-
-
-
     top: -50%;
-
-
-
     left: -50%;
-
-
-
     background: 
-
-
-
         radial-gradient(circle at 20% 30%, rgba(0, 255, 156, 0.1), transparent 40%),
-
-
-
         radial-gradient(circle at 80% 70%, rgba(0, 150, 255, 0.08), transparent 45%);
-
-
-
     animation: nebulaMove 30s linear infinite;
-
-
-
 }
-
-
-
-
-
-
 
 /* El Planeta MOVVE */
-
-
-
 .planet {
-
-
-
     position: absolute;
-
-
-
     top: 15%;
-
-
-
     right: 10%;
-
-
-
     width: 120px;
-
-
-
     height: 120px;
-
-
-
     background: radial-gradient(circle at 30% 30%, #00ff9c, #004d30);
-
-
-
     border-radius: 50%;
-
-
-
     box-shadow: -20px -20px 50px rgba(0,0,0,0.5) inset, 0 0 40px rgba(0,255,156,0.4);
-
-
-
     animation: float 6s ease-in-out infinite;
-
-
-
     z-index: -1;
-
-
-
 }
-
-
-
-
-
-
 
 /* Anillo del planeta */
-
-
-
 .planet::after {
-
-
-
     content: "";
-
-
-
     position: absolute;
-
-
-
     top: 50%;
-
-
-
     left: 50%;
-
-
-
     width: 200px;
-
-
-
     height: 40px;
-
-
-
     border: 2px solid rgba(0, 255, 156, 0.2);
-
-
-
     border-radius: 50%;
-
-
-
     transform: translate(-50%, -50%) rotateX(75deg);
-
-
-
 }
-
-
-
-
-
-
 
 /* Estrellas parpadeantes */
-
-
-
 .stars {
-
-
-
     position: absolute;
-
-
-
     width: 100%;
-
-
-
     height: 100%;
-
-
-
     background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat;
-
-
-
     opacity: 0.5;
-
-
-
     animation: starsTwinkle 4s ease-in-out infinite;
-
-
-
 }
-
-
-
-
-
-
 
 /* Animaciones de Fondo */
-
-
-
 @keyframes nebulaMove {
-
-
-
     from { transform: rotate(0deg); }
-
-
-
     to { transform: rotate(360deg); }
-
-
-
 }
-
-
-
-
-
-
 
 @keyframes float {
-
-
-
     0%, 100% { transform: translateY(0) rotate(0deg); }
-
-
-
     50% { transform: translateY(-20px) rotate(5deg); }
-
-
-
 }
-
-
-
-
-
-
 
 @keyframes starsTwinkle {
-
-
-
     0%, 100% { opacity: 0.3; }
-
-
-
     50% { opacity: 0.7; }
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= LOGO FLOTANTE ================= */
-
-
-
 .floating-logo {
-
-
-
     position: fixed;
-
-
-
-    top: 20px;
-
-
-
-    left: 20px;
-
-
-
+    top: 80px;
+    left: 80px;
     z-index: 40;
-
-
-
     animation: floatLogo 6s ease-in-out infinite;
-
-
-
 }
-
-
-
-
-
-
 
 .floating-logo img {
-
-
-
     width: 110px;
-
-
-
     filter: drop-shadow(0 0 12px #4CFF2E);
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= HERO ================= */
-
-
-
 .hero {
-
-
-
     min-height: 100vh;
-
-
-
     position: relative;
-
-
-
     display: flex;
-
-
-
     justify-content: center;
-
-
-
     align-items: center;
-
-
-
     text-align: center;
-
-
-
 }
-
-
-
-
-
-
 
 .hero-video {
-
-
-
     overflow: hidden;
-
-
-
 }
-
-
-
-
-
-
 
 .hero-bg-video {
-
-
-
     position: absolute;
-
-
-
     inset: 0;
-
-
-
     width: 100%;
-
-
-
     height: 100%;
-
-
-
     object-fit: cover;
-
-
-
     opacity: 0.45;
-
-
-
     z-index: -1;
-
-
-
 }
-
-
-
-
-
-
 
 .hero-overlay {
-
-
-
     position: absolute;
-
-
-
     inset: 0;
-
-
-
     background: linear-gradient(
-
-
-
         180deg,
-
-
-
         rgba(0,0,0,0.65),
-
-
-
         rgba(0,0,0,0.9)
-
-
-
     );
-
-
-
     z-index: 0;
-
-
-
 }
-
-
-
-
-
-
 
 .hero-content {
-
-
-
     position: relative;
-
-
-
     z-index: 1;
-
-
-
     max-width: 900px;
-
-
-
     padding: 20px;
-
-
-
 }
-
-
-
-
-
-
 
 .hero h1 {
-
-
-
     font-size: clamp(2.4rem, 5vw, 3.5rem);
-
-
-
     margin-bottom: 15px;
-
-
-
 }
-
-
-
-
-
-
 
 .hero span {
-
-
-
     color: #4CFF2E;
-
-
-
 }
-
-
-
-
-
-
 
 .hero p {
-
-
-
     opacity: 0.85;
-
-
-
     line-height: 1.6;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= BOTONES ================= */
-
-
-
 .buttons {
-
-
-
     margin-top: 25px;
-
-
-
     display: flex;
-
-
-
     gap: 15px;
-
-
-
     justify-content: center;
-
-
-
     flex-wrap: wrap;
-
-
-
 }
-
-
-
-
-
-
 
 .btn {
-
-
-
     display: inline-block;
-
-
-
     padding: 12px 32px;
-
-
-
     border-radius: 30px;
-
-
-
     font-size: 1rem;
-
-
-
     cursor: pointer;
-
-
-
     text-decoration: none;
-
-
-
     transition: 0.3s ease;
-
-
-
     border: none;
-
-
-
 }
-
-
-
-
-
-
 
 .btn-primary {
-
-
-
     background: #4CFF2E;
-
-
-
     color: #000;
-
-
-
 }
-
-
-
-
-
-
 
 .btn-secondary {
-
-
-
     background: transparent;
-
-
-
     border: 2px solid #4CFF2E;
-
-
-
     color: #4CFF2E;
-
-
-
 }
-
-
-
-
-
-
 
 .btn:hover {
-
-
-
     transform: scale(1.06);
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= SECCIONES ================= */
-
-
-
 .section {
-
-
-
     padding: 90px 20px;
-
-
-
     text-align: center;
-
-
-
 }
-
-
-
-
-
-
 
 .section-title {
-
-
-
     font-size: 2.4rem;
-
-
-
     margin-bottom: 50px;
-
-
-
 }
-
-
-
-
-
-
 
 .section-title span {
-
-
-
     color: #4CFF2E;
-
-
-
 }
 
-
-
-
-
-
-
-/* ================= CARDS & ANIMACIONES ECOSISTEMA ================= */
-
-
-
+/* ================= CARDS ================= */
 .cards {
-
-
-
     max-width: 1100px;
-
-
-
     margin: auto;
-
-
-
     display: grid;
-
-
-
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-
-
     gap: 25px;
-
-
-
 }
-
-
-
-
-
-
-
-.card-link {
-
-
-
-    text-decoration: none;
-
-
-
-    color: inherit;
-
-
-
-}
-
-
-
-
-
-
 
 .card {
-
-
-
     background: rgba(255,255,255,0.05);
-
-
-
     padding: 30px;
-
-
-
     border-radius: 18px;
-
-
-
     backdrop-filter: blur(6px);
-
-
-
     transition: 0.3s ease;
-
-
-
-    animation: floatCard 4s ease-in-out infinite;
-
-
-
-    animation-delay: var(--delay, 0s);
-
-
-
 }
 
-
-
-
-
-
-
-/* Efectos de Brillo Neón */
-
-
-
-.card-glow-green:hover { 
-
-
-
+.card:hover {
     transform: translateY(-10px);
-
-
-
-    box-shadow: 0 0 30px rgba(76, 255, 46, 0.4); 
-
-
-
-    border: 1px solid #4CFF2E; 
-
-
-
+    box-shadow: 0 0 25px rgba(0,255,156,0.25);
 }
-
-
-
-.card-glow-blue:hover { 
-
-
-
-    transform: translateY(-10px);
-
-
-
-    box-shadow: 0 0 30px rgba(0, 150, 255, 0.4); 
-
-
-
-    border: 1px solid #0096FF; 
-
-
-
-}
-
-
-
-.card-glow-purple:hover { 
-
-
-
-    transform: translateY(-10px);
-
-
-
-    box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); 
-
-
-
-    border: 1px solid #9D00FF; 
-
-
-
-}
-
-
-
-
-
-
-
-@keyframes floatCard {
-
-
-
-    0%, 100% { transform: translateY(0); }
-
-
-
-    50% { transform: translateY(-12px); }
-
-
-
-}
-
-
-
-
-
-
 
 /* ================= GALERÍA ================= */
-
-
-
 .album {
-
-
-
     max-width: 1100px;
-
-
-
     margin: auto;
-
-
-
     display: grid;
-
-
-
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-
-
-
     gap: 10px;
-
-
-
 }
-
-
-
-
-
-
 
 .album img {
-
-
-
     width: 100%;
-
-
-
     height: 300px;
-
-
-
     object-fit: cover;
-
-
-
     border-radius: 10px;
-
-
-
     cursor: pointer;
-
-
-
     transition: transform 0.3s ease;
-
-
-
 }
-
-
-
-
-
-
 
 .album img:hover {
-
-
-
     transform: scale(1.05);
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= LIGHTBOX ================= */
-
-
-
 .lightbox {
-
-
-
     display: none;
-
-
-
     position: fixed;
-
-
-
     inset: 0;
-
-
-
     background: rgba(0,0,0,0.85);
-
-
-
     z-index: 5000;
-
-
-
     justify-content: center;
-
-
-
     align-items: center;
-
-
-
 }
-
-
-
-
-
-
 
 .lightbox img {
-
-
-
     max-width: 50%;
-
-
-
     max-height: 50%;
-
-
-
     border-radius: 12px;
-
-
-
 }
-
-
-
-
-
-
 
 .lightbox .close {
-
-
-
     position: absolute;
-
-
-
     top: 25px;
-
-
-
     right: 35px;
-
-
-
     font-size: 32px;
-
-
-
     color: #fff;
-
-
-
     cursor: pointer;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= CTA ================= */
-
-
-
 .cta {
-
-
-
     padding: 80px 20px;
-
-
-
     text-align: center;
-
-
-
     background: linear-gradient(
-
-
-
         180deg,
-
-
-
         transparent,
-
-
-
         rgba(0,255,156,0.08)
-
-
-
     );
-
-
-
 }
-
-
-
-
-
-
 
 .cta h2 {
-
-
-
     font-size: 2.3rem;
-
-
-
     margin-bottom: 10px;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= FOOTER ================= */
-
-
-
 footer {
-
-
-
     padding: 25px;
-
-
-
     text-align: center;
-
-
-
     opacity: 0.65;
-
-
-
 }
-
-
-
-
-
-
 
 footer span {
-
-
-
     color: #4CFF2E;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= WHATSAPP ================= */
-
-
-
 .whatsapp-float {
-
-
-
     position: fixed;
-
-
-
     bottom: 20px;
-
-
-
     right: 20px;
-
-
-
     background: #4CFF2E;
-
-
-
     padding: 14px 16px;
-
-
-
     border-radius: 50%;
-
-
-
     font-size: 26px;
-
-
-
     color: #fff;
-
-
-
     text-decoration: none;
-
-
-
     z-index: 3000;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= MODAL PDF ================= */
-
-
-
 .pdf-modal {
-
-
-
     display: none;
-
-
-
     position: fixed;
-
-
-
     inset: 0;
-
-
-
     background: rgba(0,0,0,0.9);
-
-
-
     z-index: 4000;
-
-
-
     justify-content: center;
-
-
-
     align-items: center;
-
-
-
 }
-
-
-
-
-
-
 
 .pdf-box {
-
-
-
     width: 50%;
-
-
-
     height: 55%;
-
-
-
     background: #000;
-
-
-
     border-radius: 12px;
-
-
-
     position: relative;
-
-
-
 }
-
-
-
-
-
-
 
 .pdf-box iframe {
-
-
-
     width: 100%;
-
-
-
     height: 100%;
-
-
-
     border: none;
-
-
-
 }
-
-
-
-
-
-
 
 .close-btn {
-
-
-
     position: absolute;
-
-
-
     top: 15px;
-
-
-
     right: 15px;
-
-
-
     background: #4CFF2E;
-
-
-
     border: none;
-
-
-
     border-radius: 50%;
-
-
-
     width: 36px;
-
-
-
     height: 36px;
-
-
-
     cursor: pointer;
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= MENÚ ================= */
-
-
-
 .menu-btn {
-
-
-
     position: fixed;
-
-
-
     top: 25px;
-
-
-
     right: 25px;
-
-
-
     z-index: 5000;
-
-
-
     background: rgba(0,0,0,0.7);
-
-
-
     color: #4CFF2E;
-
-
-
     border: 2px solid #4CFF2E;
-
-
-
     border-radius: 18px;
-
-
-
     font-size: 20px;
-
-
-
     padding: 10px 14px;
-
-
-
     cursor: pointer;
-
-
-
 }
-
-
-
-
-
-
 
 .menu {
-
-
-
     position: fixed;
-
-
-
     top: 0;
-
-
-
     right: -240px;
-
-
-
     width: 240px;
-
-
-
     height: 100vh;
-
-
-
     background: rgba(0,0,0,0.25);
-
-
-
     backdrop-filter: blur(12px);
-
-
-
     display: flex;
-
-
-
     flex-direction: column;
-
-
-
     padding-top: 90px;
-
-
-
     gap: 25px;
-
-
-
     transition: 0.4s ease;
-
-
-
     z-index: 4500;
-
-
-
 }
-
-
-
-
-
-
 
 .menu a {
-
-
-
     color: #4CFF2E;
-
-
-
     text-decoration: none;
-
-
-
     font-size: 1.2rem;
-
-
-
     padding-left: 30px;
-
-
-
 }
-
-
-
-
-
-
 
 .menu.active {
-
-
-
     right: 0;
-
-
-
 }
 
-
-
-
-
-
-
-/* ================= ANIMACIONES EXTRAS ================= */
-
-
-
+/* ================= ANIMACIONES ================= */
 @keyframes floatLogo {
-
-
-
     0%, 100% { transform: translateY(0); }
-
-
-
     50% { transform: translateY(-15px); }
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= GALERÍA DE VIDEOS ================= */
-
-
-
 .video-gallery {
-
-
-
-    max-width: 1000px;
-
-
-
+    max-width: 1000x;
     margin: auto;
-
-
-
     display: grid;
-
-
-
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-
-
-
     gap: 15px;
-
-
-
 }
-
-
-
-
-
-
 
 .video-card {
-
-
-
     cursor: pointer;
-
-
-
     background: rgba(255,255,255,0.05);
-
-
-
     border-radius: 10px;
-
-
-
     overflow: hidden;
-
-
-
     transition: 0.3s ease;
-
-
-
 }
-
-
-
-
-
-
 
 .video-card img {
-
-
-
     width: 100%;
-
-
-
     height: 300px;
-
-
-
     object-fit: cover;
-
-
-
 }
-
-
-
-
-
-
 
 .video-card h3 {
-
-
-
     padding: 7px;
-
-
-
     font-size: 1.1rem;
-
-
-
     text-align: center;
-
-
-
 }
-
-
-
-
-
-
 
 .video-card:hover {
-
-
-
     transform: translateY(-8px);
-
-
-
     box-shadow: 0 0 20px rgba(0,255,156,0.25);
-
-
-
 }
-
-
-
-
-
-
 
 /* ================= MODAL VIDEO ================= */
-
-
-
 .video-modal {
-
-
-
     display: none;
-
-
-
     position: fixed;
-
-
-
     inset: 0;
-
-
-
     background: rgba(0,0,0,0.9);
-
-
-
     z-index: 6000;
-
-
-
     justify-content: center;
-
-
-
     align-items: center;
-
-
-
 }
 
-
-
-
-
-
-
 .video-box {
-
-
-
-    width: 90%;
-
-
-
+    width: 80%;
     max-width: 500px;
-
-
-
     position: relative;
+}
 
+.video-box video {
+    width: 50%;
+    border-radius: 20px;
+}
+
+.presentacion-movve {
+  padding: 50px 15px;
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+.presentacion-movve h2 {
+  color: #4CFF2E;
+  font-size: 36px;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(76,255,46,0.4);
+}
+
+/* CONTENEDOR */
+.slideshow {
+  max-width: 700px;
+  margin: auto;
+  background: #0b0b0b;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(76,255,46,0.35);
+}
+
+/* SLIDES */
+.slide {
+  display: none;
+  animation: fade 1s ease;
+}
+
+.slide.activo {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.slide p {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.slide span {
+  color: #4CFF2E;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* ANIMACIÓN */
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.video-resultados {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,255,255,0.25);
+}
+
+.video-resultados video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
 
 
