@@ -48,13 +48,13 @@ crossorigin="anonymous"></script>
 
 .planet {
     position: absolute;
-    top: 15%;
-    right: 10%;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle at 30% 30%, #4CFF2E, #004d30, #000);
+    top: 20%;
+    right: 15%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, #00ff9c, #004d30);
     border-radius: 50%;
-    box-shadow: -20px -20px 50px rgba(0,0,0,0.8) inset, 0 0 30px rgba(76,255,46,0.2);
+    box-shadow: -15px -15px 40px rgba(0,0,0,0.6) inset, 0 0 30px rgba(0,255,156,0.3);
     animation: float 6s ease-in-out infinite;
     z-index: -1;
 }
@@ -64,34 +64,11 @@ crossorigin="anonymous"></script>
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 280px;
-    height: 40px;
-    border: 2px solid rgba(76, 255, 46, 0.1);
+    width: 180px;
+    height: 30px;
+    border: 2px solid rgba(0, 255, 156, 0.15);
     border-radius: 50%;
     transform: translate(-50%, -50%) rotateX(75deg);
-}
-
-/* ================= LOGO GIF FLOTANTE (20px ARRIBA/IZQ) ================= */
-.floating-logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 100;
-}
-
-.floating-logo img {
-    width: 130px; 
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(76, 255, 46, 0.5));
-    animation: floatLogo 4s ease-in-out infinite;
-    /* Máscara radial para fundir bordes del GIF */
-    mask-image: radial-gradient(circle, black 55%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle, black 55%, transparent 100%);
-}
-
-@keyframes floatLogo {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
 }
 
 @keyframes nebulaMove {
@@ -107,6 +84,29 @@ crossorigin="anonymous"></script>
 @keyframes starsTwinkle {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.6; }
+}
+
+/* ================= LOGO GIF FLOTANTE ================= */
+.floating-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.gif-logo {
+    width: 180px; /* Tamaño ajustable */
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(76, 255, 46, 0.6));
+    animation: floatGif 5s ease-in-out infinite;
+}
+
+@keyframes floatGif {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
 }
 
 /* ================= BOTONES SOCIALES ================= */
@@ -170,9 +170,6 @@ crossorigin="anonymous"></script>
 .card-glow-purple:hover { box-shadow: 0 0 30px rgba(157, 0, 255, 0.5); border: 1px solid #9D00FF; }
 
 .card {
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
     animation: floatCard 4s ease-in-out infinite;
     animation-delay: var(--delay);
 }
@@ -213,8 +210,8 @@ crossorigin="anonymous"></script>
     <div class="planet"></div>
 </div>
 
-<div class="floating-logo">
-    <img src="logo-movve-planeta.gif" alt="MOVVE PLANETA">
+<div class="floating-logo-container">
+    <img src="tu-logo.gif" alt="MOVVE PLANETA" class="gif-logo">
 </div>
 
 <header class="hero hero-video section">
@@ -377,7 +374,6 @@ function openPDF(){
 
 </body>
 </html>
-
 
 
 
