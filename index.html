@@ -86,6 +86,28 @@ crossorigin="anonymous"></script>
     50% { opacity: 0.6; }
 }
 
+/* ================= LOGO ADAPTADO AL FONDO ================= */
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 40;
+    animation: floatLogo 6s ease-in-out infinite;
+}
+
+.floating-logo img {
+    width: 120px; /* Tamaño ajustable */
+    height: auto;
+    display: block;
+    mix-blend-mode: screen; /* Mezcla el logo con el fondo de galaxia */
+    filter: drop-shadow(0 0 10px rgba(0, 255, 156, 0.4)); /* Resplandor acorde a la galaxia */
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
 /* ================= BOTONES SOCIALES ================= */
 .social-buttons {
     display: flex;
@@ -344,7 +366,6 @@ function closeVideo(){
  document.getElementById('videoModal').style.display='none';
 }
 
-// Nueva función para abrir PDF en pestaña nueva
 function openPDF(){
     window.open('Presentacion-Movve-Wallet.pdf', '_blank');
 }
