@@ -86,29 +86,6 @@ crossorigin="anonymous"></script>
     50% { opacity: 0.6; }
 }
 
-/* ================= LOGO GIF FLOTANTE ================= */
-.floating-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding-top: 40px;
-    position: relative;
-    z-index: 10;
-}
-
-.gif-logo {
-    width: 180px; /* Tamaño ajustable */
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(76, 255, 46, 0.6));
-    animation: floatGif 5s ease-in-out infinite;
-}
-
-@keyframes floatGif {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.05); }
-}
-
 /* ================= BOTONES SOCIALES ================= */
 .social-buttons {
     display: flex;
@@ -150,7 +127,7 @@ crossorigin="anonymous"></script>
 }
 @media(max-width:768px){
     .buttons{
-        flex-direction:row-reverse;
+        flex-direction:column;
         align-items:center;
     }
     .buttons .btn{
@@ -210,8 +187,8 @@ crossorigin="anonymous"></script>
     <div class="planet"></div>
 </div>
 
-<div class="floating-logo-container">
-    <img src="tu-logo.gif" alt="MOVVE PLANETA" class="gif-logo">
+<div class="floating-logo">
+    <img src="logo-movve-planeta.png" alt="MOVVE PLANETA">
 </div>
 
 <header class="hero hero-video section">
@@ -222,7 +199,7 @@ crossorigin="anonymous"></script>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-        <h1><span>MOVVE</span> PLANETA </h1>
+        <h1><span>MOVVE</span> PLANETA 🌍</h1>
         <p>Crecimiento inteligente, inversión transparente y comunidad real.</p>
         
         <div class="social-buttons">
@@ -275,16 +252,19 @@ crossorigin="anonymous"></script>
         <a href="crecimiento.html" class="card-link" style="--delay: 0.1s;">
             <div class="card card-glow-green">
                 <h3>🚀 Crecimiento</h3>
+                <p>Visión a largo plazo.</p>
             </div>
         </a>
         <a href="inversion.html" class="card-link" style="--delay: 0.3s;">
             <div class="card card-glow-blue">
                 <h3>💰 Inversión</h3>
+                <p>Transparencia total.</p>
             </div>
         </a>
         <a href="comunidad.html" class="card-link" style="--delay: 0.5s;">
             <div class="card card-glow-purple">
                 <h3>🌎 Comunidad</h3>
+                <p>Resultados compartidos.</p>
             </div>
         </a>
     </div>
@@ -350,6 +330,13 @@ atOptions={
     </div>
 </div>
 
+<div id="pdfModal" class="pdf-modal">
+    <div class="pdf-box">
+        <button class="close-btn" onclick="closePDF()">✕</button>
+        <iframe src="Presentacion-Movve-Wallet.pdf"></iframe>
+    </div>
+</div>
+
 <script>
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
@@ -367,14 +354,12 @@ function closeVideo(){
  document.getElementById('videoModal').style.display='none';
 }
 
-function openPDF(){
-    window.open('Presentacion-Movve-Wallet.pdf', '_blank');
-}
+function openPDF(){document.getElementById('pdfModal').style.display='flex'}
+function closePDF(){document.getElementById('pdfModal').style.display='none'}
 </script>
 
 </body>
 </html>
-
 
 
 
