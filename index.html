@@ -136,7 +136,27 @@ crossorigin="anonymous"></script>
     }
 }
 
-/* ================= ANIMACIONES ================= */
+/* ================= ANIMACIONES DE CARDS ================= */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-glow-green:hover { box-shadow: 0 0 30px rgba(76, 255, 46, 0.5); border: 1px solid #4CFF2E; }
+.card-glow-blue:hover { box-shadow: 0 0 30px rgba(0, 150, 255, 0.5); border: 1px solid #0096FF; }
+.card-glow-purple:hover { box-shadow: 0 0 30px rgba(157, 0, 255, 0.5); border: 1px solid #9D00FF; }
+
+.card {
+    animation: floatCard 4s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* ================= ANIMACIONES GENERALES ================= */
 .section, .card, .video-card, .album img{
     opacity:0;
     transform:translateY(40px);
@@ -150,7 +170,6 @@ crossorigin="anonymous"></script>
     transform:translateY(0);
 }
 
-/* Hover premium */
 .btn{
     transition:transform .3s ease, box-shadow .3s ease;
 }
@@ -230,14 +249,20 @@ crossorigin="anonymous"></script>
     </div>
 
     <div class="cards">
-        <a href="crecimiento.html" style="text-decoration: none; color: inherit;">
-            <div class="card"><h3>🚀 Crecimiento</h3><p>Visión a largo plazo.</p></div>
+        <a href="crecimiento.html" class="card-link" style="--delay: 0.1s;">
+            <div class="card card-glow-green">
+                <h3>🚀 Crecimiento</h3>
+            </div>
         </a>
-        <a href="inversion.html" style="text-decoration: none; color: inherit;">
-            <div class="card"><h3>💰 Inversión</h3><p>Transparencia total.</p></div>
+        <a href="inversion.html" class="card-link" style="--delay: 0.3s;">
+            <div class="card card-glow-blue">
+                <h3>💰 Inversión</h3>
+            </div>
         </a>
-        <a href="comunidad.html" style="text-decoration: none; color: inherit;">
-            <div class="card"><h3>🌎 Comunidad</h3><p>Resultados compartidos.</p></div>
+        <a href="comunidad.html" class="card-link" style="--delay: 0.5s;">
+            <div class="card card-glow-purple">
+                <h3>🌎 Comunidad</h3>
+            </div>
         </a>
     </div>
 </section>
@@ -310,14 +335,12 @@ atOptions={
 </div>
 
 <script>
-/* Animación Scroll */
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
 });
 document.querySelectorAll('.section,.card,.video-card,.album img')
 .forEach(el=>observer.observe(el));
 
-/* Video Modal */
 function openVideo(src){
  document.getElementById('modalVideo').src=src;
  document.getElementById('videoModal').style.display='flex';
@@ -328,13 +351,13 @@ function closeVideo(){
  document.getElementById('videoModal').style.display='none';
 }
 
-/* PDF */
 function openPDF(){document.getElementById('pdfModal').style.display='flex'}
 function closePDF(){document.getElementById('pdfModal').style.display='none'}
 </script>
 
 </body>
 </html>
+
 
 
 
