@@ -171,7 +171,7 @@ body {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-    gap: 15px;
+    gap: 10px;
 }
 
 .album img {
@@ -466,4 +466,5 @@ footer span {
     display: block;
 
 }
+
 
