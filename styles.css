@@ -962,7 +962,7 @@ footer span {
 
 .video-box video {
 
-    width: 100%;
+    width: 50%;
 
     border-radius: 20px;
 
@@ -977,6 +977,7 @@ footer span {
   background: rgba(0,0,0,0.7);
 
   text-align: center;
+
 
 
 
