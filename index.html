@@ -188,7 +188,7 @@ crossorigin="anonymous"></script>
 </div>
 
 <div class="floating-logo">
-    <img src="logo-movve-planeta.png" alt="MOVVE PLANETA">
+    <img src="tu-logo.gif" alt="MOVVE PLANETA">
 </div>
 
 <header class="hero hero-video section">
@@ -199,7 +199,7 @@ crossorigin="anonymous"></script>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-        <h1><span>MOVVE</span> PLANETA 🌍</h1>
+        <h1><span>MOVVE</span> PLANETA </h1>
         <p>Crecimiento inteligente, inversión transparente y comunidad real.</p>
         
         <div class="social-buttons">
@@ -252,19 +252,16 @@ crossorigin="anonymous"></script>
         <a href="crecimiento.html" class="card-link" style="--delay: 0.1s;">
             <div class="card card-glow-green">
                 <h3>🚀 Crecimiento</h3>
-                <p>Visión a largo plazo.</p>
             </div>
         </a>
         <a href="inversion.html" class="card-link" style="--delay: 0.3s;">
             <div class="card card-glow-blue">
                 <h3>💰 Inversión</h3>
-                <p>Transparencia total.</p>
             </div>
         </a>
         <a href="comunidad.html" class="card-link" style="--delay: 0.5s;">
             <div class="card card-glow-purple">
                 <h3>🌎 Comunidad</h3>
-                <p>Resultados compartidos.</p>
             </div>
         </a>
     </div>
@@ -330,13 +327,6 @@ atOptions={
     </div>
 </div>
 
-<div id="pdfModal" class="pdf-modal">
-    <div class="pdf-box">
-        <button class="close-btn" onclick="closePDF()">✕</button>
-        <iframe src="Presentacion-Movve-Wallet.pdf"></iframe>
-    </div>
-</div>
-
 <script>
 const observer=new IntersectionObserver(entries=>{
  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
@@ -354,13 +344,14 @@ function closeVideo(){
  document.getElementById('videoModal').style.display='none';
 }
 
-function openPDF(){document.getElementById('pdfModal').style.display='flex'}
-function closePDF(){document.getElementById('pdfModal').style.display='none'}
+// Nueva función para abrir PDF en pestaña nueva
+function openPDF(){
+    window.open('Presentacion-Movve-Wallet.pdf', '_blank');
+}
 </script>
 
 </body>
 </html>
-
 
 
 
