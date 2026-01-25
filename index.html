@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 
@@ -84,6 +86,38 @@ crossorigin="anonymous"></script>
     50% { opacity: 0.6; }
 }
 
+/* ================= BOTONES SOCIALES ================= */
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.btn-social {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(76, 255, 46, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.btn-social:hover {
+    transform: translateY(-5px);
+    border-color: #4CFF2E;
+    box-shadow: 0 0 20px rgba(76, 255, 46, 0.5);
+    color: #4CFF2E;
+}
+
 /* ================= BOTONES MOBILE ================= */
 .buttons{
     display:flex;
@@ -148,9 +182,22 @@ crossorigin="anonymous"></script>
     <div class="hero-content">
         <h1><span>MOVVE</span> PLANETA 🌍</h1>
         <p>Crecimiento inteligente, inversión transparente y comunidad real.</p>
-        <div class="buttons">
-            <a href="https://chat.whatsapp.com/CPnnPPINjQF12QwJta0eqx" class="btn btn-primary" target="_blank">
-                Únete al Grupo
+        
+        <div class="social-buttons">
+            <a href="https://chat.whatsapp.com/CPnnPPINjQF12QwJta0eqx" class="btn-social" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://t.me/TuEnlaceTelegram" class="btn-social" target="_blank" title="Telegram">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://instagram.com/TuUsuario" class="btn-social" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://youtube.com/@TuCanal" class="btn-social" target="_blank" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://facebook.com/TuPagina" class="btn-social" target="_blank" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
             </a>
         </div>
     </div>
@@ -282,6 +329,7 @@ function closePDF(){document.getElementById('pdfModal').style.display='none'}
 
 </body>
 </html>
+
 
 
 
