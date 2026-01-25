@@ -167,18 +167,18 @@ body {
 
 /* ================= GALERÍA ================= */
 .album {
-    max-width: 500px;
+    max-width: 1000px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-    gap: 20px;
+    gap: 15px;
 }
 
 .album img {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 18px;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -464,4 +464,5 @@ footer span {
     width: 100%;
     height: auto;
     display: block;
+
 }
