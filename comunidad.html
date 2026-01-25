@@ -11,7 +11,7 @@
         .back-btn:hover { background: #4CFF2E; color: #000; }
         h1 span { color: #4CFF2E; }
   
-        /* Estilos específicos para el logo-video en esta página */
+        /* Estilos para que el logo se integre perfectamente al fondo */
         .logo-video-container {
             display: flex;
             justify-content: center;
@@ -19,16 +19,24 @@
             margin-bottom: -40px;
             position: relative;
             z-index: 11;
+            /* El modo screen elimina el fondo negro del video si lo tiene */
+            mix-blend-mode: screen; 
         }
+
         .logo-video {
-            width: 200px;
+            width: 180px; /* Tamaño ajustado para destacar */
             height: auto;
             filter: drop-shadow(0 0 15px rgba(76, 255, 46, 0.5));
             animation: floatLogoVideo 5s ease-in-out infinite;
+            
+            /* Máscara para que las orillas del video se desvanezcan */
+            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
         }
+
         @keyframes floatLogoVideo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
         }
     </style>
 </head>
@@ -49,9 +57,8 @@
         <p style="margin-top: 20px; font-size: 1.2rem; line-height: 1.8; opacity: 0.9;">
             No eres solo un inversor, eres parte de un ecosistema vivo. Nuestra comunidad comparte estrategias, logros y soporte constante. Juntos estamos construyendo el futuro de la economía digital.
         </p>
-        <a href="index.html#ecosistema" class="back-btn">← Volver al Inicio</a>
+        <a href="index.html#ecosistema" class="back-btn">← Volver al Ecosistema</a>
     </div>
 </body>
-
 </html>
 
