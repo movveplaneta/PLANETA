@@ -86,6 +86,27 @@
             50% { opacity: 0.6; }
         }
 
+        /* ================= TRADUCTOR GOOGLE ESTILO GALAXIA ================= */
+        #google_translate_element {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        .goog-te-gadget-simple {
+            background: rgba(0, 0, 0, 0.7) !important;
+            border: 1px solid rgba(76, 255, 46, 0.5) !important;
+            padding: 5px 10px !important;
+            border-radius: 20px !important;
+            backdrop-filter: blur(10px);
+        }
+        .goog-te-gadget-simple span {
+            color: #4CFF2E !important;
+            font-size: 12px !important;
+        }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+
         /* ================= BOTONES SOCIALES ================= */
         .social-buttons {
             display: flex;
@@ -183,7 +204,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         }
 
-        /* ================= ESTILOS NUEVOS: LIGHTBOX FOTOS ================= */
+        /* ================= LIGHTBOX FOTOS ================= */
         .album img {
             cursor: pointer;
         }
@@ -234,6 +255,8 @@
         <div class="stars"></div>
         <div class="planet"></div>
     </div>
+
+    <div id="google_translate_element"></div>
 
     <div class="floating-logo">
         <img src="logotipo-movve-planeta.png" alt="MOVVE PLANETA">
@@ -382,6 +405,18 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,de,fr,pt,it,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -394,13 +429,8 @@
 
         // MONETIZACIÓN DOBLE ENLACE REDES SOCIALES
         function monetizarSocial(urlDestino) {
-            // REEMPLAZA ESTE ENLACE POR TU SMARTLINK DE ADSTERRA
             const urlSmartlink = "https://www.effectivegatecpm.com/xpxckz2f?key=df71c9b35e9fd812f18cb6537270a3de"; 
-            
-            // Abre el anuncio en una pestaña nueva
             window.open(urlSmartlink, '_blank');
-            
-            // Redirige la pestaña actual a la red social
             window.location.href = urlDestino;
         }
 
@@ -417,7 +447,7 @@
             document.getElementById('videoModal').style.display = 'none';
         }
 
-        // FUNCIONES DE IMAGEN (MISMA PESTAÑA)
+        // FUNCIONES DE IMAGEN
         function openImage(src) {
             document.getElementById('fullImage').src = src;
             document.getElementById('imageModal').style.display = 'flex';
