@@ -5,527 +5,266 @@
     <meta charset="UTF-8">
     <title>MOVVE PLANETA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7769897721797370" crossorigin="anonymous"></script>
 
     <style>
-        /* ================= FONDO GALAXIA ÉPICO ================= */
-        .galaxy-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background: radial-gradient(circle at center, #0f2027 0%, #000 100%);
-            overflow: hidden;
-        }
+        /* ================= ESTILOS BASE Y BARRA SUPERIOR ================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #000; color: #fff; overflow-x: hidden; padding-top: 70px; }
 
-        .galaxy-bg::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 156, 0.1), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(0, 150, 255, 0.08), transparent 45%);
-            animation: nebulaMove 30s linear infinite;
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 25px; z-index: 10001;
+            border-bottom: 1px solid rgba(76, 255, 46, 0.3);
+            transition: transform 0.4s ease;
         }
+        .navbar.hidden { transform: translateY(-100%); }
 
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat;
-            opacity: 0.5;
-            animation: starsTwinkle 4s ease-in-out infinite;
-        }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-logo { height: 45px; filter: drop-shadow(0 0 5px #4CFF2E); }
+        .nav-title { font-size: 1.4rem; font-weight: bold; color: #fff; }
+        .nav-title span { color: #4CFF2E; }
 
-        .planet {
-            position: absolute;
-            top: 20%;
-            right: 15%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle at 30% 30%, #00ff9c, #004d30);
-            border-radius: 50%;
-            box-shadow: -15px -15px 40px rgba(0, 0, 0, 0.6) inset, 0 0 30px rgba(0, 255, 156, 0.3);
-            animation: float 6s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        .planet::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 180px;
-            height: 30px;
-            border: 2px solid rgba(0, 255, 156, 0.15);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) rotateX(75deg);
-        }
-
-        @keyframes nebulaMove {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        @keyframes starsTwinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-
-        /* ================= SELECTOR DE IDIOMAS MULTIPLE ================= */
-        .language-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .language-selected {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #4CFF2E;
-            border-radius: 30px;
-            padding: 8px 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            color: #fff;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(76, 255, 46, 0.3);
-        }
+        .menu-container { position: relative; }
+        .menu-btn { background: none; border: none; color: #4CFF2E; font-size: 1.8rem; cursor: pointer; }
 
         .language-dropdown {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(76, 255, 46, 0.4);
-            border-radius: 15px;
-            margin-top: 10px;
-            padding: 10px 0;
-            width: 150px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none; position: absolute; top: 55px; right: 0;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #4CFF2E;
+            border-radius: 12px; width: 180px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-
         .language-dropdown.active { display: block; }
+        .lang-option { padding: 12px 20px; color: white; cursor: pointer; transition: 0.3s; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .lang-option:hover { background: rgba(76, 255, 46, 0.2); color: #4CFF2E; }
 
-        .lang-option {
-            padding: 8px 20px;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.2s;
-            display: flex;
-            justify-content: space-between;
+        /* ================= FONDO GALAXIA ================= */
+        .galaxy-bg { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at center, #0f2027 0%, #000 100%); }
+        .stars { position: absolute; width: 100%; height: 100%; background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat; opacity: 0.4; }
+        
+        .floating-logo { 
+            position: fixed; top: 90px; left: 20px; z-index: 1000; 
+            transition: all 0.4s ease; 
         }
+        .floating-logo.hidden { opacity: 0; transform: scale(0.5); }
+        .floating-logo img { width: 70px; filter: drop-shadow(0 0 10px #4CFF2E); }
 
-        .lang-option:hover {
-            background: rgba(76, 255, 46, 0.2);
-            color: #4CFF2E;
+        /* ================= HERO Y SECCIONES ================= */
+        .hero { position: relative; height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        .hero-bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; z-index: -1; }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 0; }
+        .hero-content { position: relative; z-index: 1; padding: 20px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero-content h1 span { color: #4CFF2E; }
+
+        .section { padding: 60px 20px; text-align: center; opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .section-title { font-size: 2.5rem; margin-bottom: 30px; }
+        .section-title span { color: #4CFF2E; }
+
+        /* ================= CARDS ECOSISTEMA ================= */
+        .cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 1200px; margin: auto; }
+        .card-link { text-decoration: none; color: inherit; --delay: 0s; }
+        .card { 
+            background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 280px;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; 
+            animation: floatCard 4s ease-in-out infinite; animation-delay: var(--delay);
         }
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .card-glow-green:hover { border-color: #4CFF2E; box-shadow: 0 0 20px rgba(76, 255, 46, 0.4); }
+        .card-glow-blue:hover { border-color: #0096FF; box-shadow: 0 0 20px rgba(0, 150, 255, 0.4); }
+        .card-glow-purple:hover { border-color: #9D00FF; box-shadow: 0 0 20px rgba(157, 0, 255, 0.4); }
 
-        /* Ocultar barra de Google */
-        #google_translate_element, .skiptranslate, .goog-te-banner-frame { display: none !important; }
-        body { top: 0px !important; }
-
-        /* ================= BOTONES SOCIALES ================= */
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 25px;
+        /* ================= GALERÍAS ================= */
+        .video-gallery, .album { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; max-width: 1100px; margin: auto; padding: 20px; }
+        .video-card, .album img { 
+            background: #111; border-radius: 12px; cursor: pointer; border: 1px solid rgba(76, 255, 46, 0.2); 
+            transition: 0.3s; width: 100%; height: 150px; object-fit: cover;
         }
+        .video-card { display: flex; flex-direction: column; height: auto; overflow: hidden; }
+        .video-card img { height: 120px; }
+        .video-card h3 { font-size: 0.9rem; padding: 10px; }
+        .video-card:hover, .album img:hover { transform: scale(1.05); border-color: #4CFF2E; }
 
-        .btn-social {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(76, 255, 46, 0.3);
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            cursor: pointer;
+        /* ================= MODAL ÚNICO (DINÁMICA UNIFICADA) ================= */
+        .modal { 
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); 
+            z-index: 20000; justify-content: center; align-items: center; backdrop-filter: blur(10px);
         }
-
-        .btn-social:hover {
-            transform: translateY(-5px);
-            border-color: #4CFF2E;
-            box-shadow: 0 0 20px rgba(76, 255, 46, 0.5);
-            color: #4CFF2E;
+        .modal-box { 
+            position: relative; width: 90%; max-width: 900px; background: #000; 
+            border: 2px solid #4CFF2E; border-radius: 15px; overflow: hidden;
         }
+        .close-btn { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
 
-        /* ================= BOTONES MOBILE ================= */
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+        /* Ocultar elementos Google */
+        #google_translate_element, .skiptranslate { display: none !important; }
 
-        @media(max-width:768px) {
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .buttons .btn {
-                width: 90%;
-                text-align: center;
-            }
-        }
-
-        /* ================= ANIMACIONES DE CARDS ================= */
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card-glow-green:hover { box-shadow: 0 0 30px rgba(76, 255, 46, 0.5); border: 1px solid #4CFF2E; }
-        .card-glow-blue:hover { box-shadow: 0 0 30px rgba(0, 150, 255, 0.5); border: 1px solid #0096FF; }
-        .card-glow-purple:hover { box-shadow: 0 0 30px rgba(157, 0, 255, 0.5); border: 1px solid #9D00FF; }
-
-        .card {
-            animation: floatCard 4s ease-in-out infinite;
-            animation-delay: var(--delay);
-        }
-
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* ================= ANIMACIONES GENERALES ================= */
-        .section, .card, .video-card, .album img {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all .8s ease;
-        }
-
-        .section.visible,
-        .card.visible,
-        .video-card.visible,
-        .album img.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .btn {
-            transition: transform .3s ease, box-shadow .3s ease;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
-        }
-
-        /* ================= LIGHTBOX FOTOS ================= */
-        #imageModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-box {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .close-image {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: #fff;
-            font-size: 30px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+        .btn { padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; cursor: pointer; border: none; }
+        .btn-primary { background: #4CFF2E; color: #000; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #4CFF2E; }
+        .social-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; }
+        .btn-social { width: 45px; height: 45px; border-radius: 50%; border: 1px solid #4CFF2E; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; background: rgba(0,0,0,0.4); }
     </style>
 </head>
 
-<body id="inicio">
+<body>
 
-    <div class="language-container">
-        <div class="language-selected" onclick="document.querySelector('.language-dropdown').classList.toggle('active')">
-            <i class="fas fa-language"></i> <span id="current-lang">Español</span>
+    <nav class="navbar" id="mainNav">
+        <div class="nav-left">
+            <img src="logotipo-movve-planeta.png" class="nav-logo" alt="Logo">
+            <div class="nav-title"><span>MOVVE</span> PLANETA</div>
         </div>
-        <div class="language-dropdown">
-            <div class="lang-option" onclick="execTranslate('es')">Español 🇪🇸</div>
-            <div class="lang-option" onclick="execTranslate('en')">English 🇺🇸</div>
-            <div class="lang-option" onclick="execTranslate('fr')">Français 🇫🇷</div>
-            <div class="lang-option" onclick="execTranslate('de')">Deutsch 🇩🇪</div>
-            <div class="lang-option" onclick="execTranslate('it')">Italiano 🇮🇹</div>
-            <div class="lang-option" onclick="execTranslate('pt')">Português 🇧🇷</div>
-            <div class="lang-option" onclick="execTranslate('zh-CN')">简体中文 🇨🇳</div>
+        <div class="menu-container">
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            <div class="language-dropdown" id="langMenu">
+                <div class="lang-option" onclick="execTranslate('es')">Español 🇪🇸</div>
+                <div class="lang-option" onclick="execTranslate('en')">English 🇺🇸</div>
+                <div class="lang-option" onclick="execTranslate('fr')">Français 🇫🇷</div>
+                <div class="lang-option" onclick="execTranslate('de')">Deutsch 🇩🇪</div>
+                <div class="lang-option" onclick="execTranslate('pt')">Português 🇧🇷</div>
+            </div>
         </div>
-    </div>
+    </nav>
 
     <div id="google_translate_element"></div>
 
-    <div class="galaxy-bg">
-        <div class="stars"></div>
-        <div class="planet"></div>
+    <div class="galaxy-bg"><div class="stars"></div></div>
+    
+    <div class="floating-logo" id="fLogo">
+        <img src="logotipo-movve-planeta.png" alt="MOVVE">
     </div>
 
-    <div class="floating-logo">
-        <img src="logotipo-movve-planeta.png" alt="MOVVE PLANETA">
-    </div>
-
-    <header class="hero hero-video section">
-        <video class="hero-bg-video" autoplay muted loop playsinline>
-            <source src="video-movve.mp4" type="video/mp4">
-        </video>
+    <header class="hero">
+        <video class="hero-bg-video" autoplay muted loop playsinline><source src="video-movve.mp4" type="video/mp4"></video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1><span>MOVVE</span> PLANETA </h1>
-            <p>Crecimiento inteligente, inversión transparente y comunidad real.</p>
-
+            <h1><span>MOVVE</span> PLANETA</h1>
+            <p>Crecimiento inteligente e inversión transparente.</p>
             <div class="social-buttons">
-                <a onclick="monetizarSocial('https://chat.whatsapp.com/CPnnPPINjQF12QwJta0eqx')" class="btn-social" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a onclick="monetizarSocial('https://t.me/TuEnlaceTelegram')" class="btn-social" title="Telegram">
-                    <i class="fab fa-telegram-plane"></i>
-                </a>
-                <a onclick="monetizarSocial('https://instagram.com/TuUsuario')" class="btn-social" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a onclick="monetizarSocial('https://youtube.com/@TuCanal')" class="btn-social" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a onclick="monetizarSocial('https://facebook.com/TuPagina')" class="btn-social" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+                <a onclick="monetizarSocial('https://chat.whatsapp.com/CPnnPPINjQF12QwJta0eqx')" class="btn-social"><i class="fab fa-whatsapp"></i></a>
+                <a onclick="monetizarSocial('https://t.me/TuEnlaceTelegram')" class="btn-social"><i class="fab fa-telegram-plane"></i></a>
+                <a onclick="monetizarSocial('https://instagram.com/TuUsuario')" class="btn-social"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </header>
 
-    <div class="ad-native">
-        <script async data-cfasync="false" src="https://pl28567956.effectivegatecpm.com/7c3689e28e965170d3979c114ec3b9eb/invoke.js"></script>
-        <div id="contenedor-7c3689e28e965170d3979c114ec3b9eb"></div>
-    </div>
-
     <section id="testimonios" class="section">
         <h2 class="section-title">Presentación <span>MOVVE</span></h2>
-        <div class="video-resultados">
-            <video controls autoplay muted loop playsinline>
-                <source src="resultados-movve.mp4" type="video/mp4">
-            </video>
+        <div style="max-width: 800px; margin: auto; border: 2px solid #4CFF2E; border-radius: 15px; overflow: hidden;">
+            <video style="width: 100%;" controls autoplay muted loop playsinline><source src="resultados-movve.mp4" type="video/mp4"></video>
         </div>
-        <div class="buttons" style="margin-top:30px;">
-            <a href="https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8" class="btn btn-primary" target="_blank">
-                Regístrate Ahora
-            </a>
+        <div style="margin-top: 20px;">
+            <a href="https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8" class="btn btn-primary" target="_blank">Regístrate Ahora</a>
         </div>
     </section>
 
     <section id="ecosistema" class="section">
         <h2 class="section-title">Ecosistema <span>Inteligente</span></h2>
-        <div class="buttons" style="margin-bottom:25px;">
-            <button class="btn btn-secondary" onclick="window.open('Presentacion-Movve-Wallet.pdf', '_blank')">
-                ¿Qué es Movve Wallet?
-            </button>
-        </div>
+        <button class="btn btn-secondary" style="margin-bottom: 30px;" onclick="window.open('Presentacion-Movve-Wallet.pdf', '_blank')">¿Qué es Movve Wallet?</button>
         <div class="cards">
-            <a href="crecimiento.html" class="card-link" style="--delay: 0.1s;">
-                <div class="card card-glow-green">
-                    <h3>🚀 Crecimiento</h3>
-                    <p>Visión a largo plazo.</p>
-                </div>
-            </a>
-            <a href="inversion.html" class="card-link" style="--delay: 0.3s;">
-                <div class="card card-glow-blue">
-                    <h3>💰 Inversión</h3>
-                    <p>Transparencia total.</p>
-                </div>
-            </a>
-            <a href="comunidad.html" class="card-link" style="--delay: 0.5s;">
-                <div class="card card-glow-purple">
-                    <h3>🌎 Comunidad</h3>
-                    <p>Resultados compartidos.</p>
-                </div>
-            </a>
+            <a href="crecimiento.html" class="card-link" style="--delay: 0.1s;"><div class="card card-glow-green"><h3>🚀 Crecimiento</h3><p>Visión a largo plazo.</p></div></a>
+            <a href="inversion.html" class="card-link" style="--delay: 0.3s;"><div class="card card-glow-blue"><h3>💰 Inversión</h3><p>Transparencia total.</p></div></a>
+            <a href="comunidad.html" class="card-link" style="--delay: 0.5s;"><div class="card card-glow-purple"><h3>🌎 Comunidad</h3><p>Resultados compartidos.</p></div></a>
         </div>
     </section>
-
-    <div style="margin:50px auto;text-align:center;">
-        <script type="text/javascript">
-            atOptions = {
-                'key': '25fba7e9c71d3f2557e3b41b2dcfa9b1',
-                'format': 'iframe',
-                'height': 250,
-                'width': 300,
-                'params': {}
-            };
-        </script>
-        <script src="https://pl28552559.effectivegatecpm.com/25/fb/a7/25fba7e9c71d3f2557e3b41b2dcfa9b1.js"></script>
-    </div>
 
     <section id="galeria-videos" class="section">
         <h2 class="section-title">Tutoriales <span>MOVVE</span></h2>
         <div class="video-gallery">
-            <div class="video-card" onclick="openVideo('video1.mp4')"><img src="thumb1.jpg"><h3>Crear Cartera</h3></div>
-            <div class="video-card" onclick="openVideo('video2.mp4')"><img src="thumb2.jpg"><h3>Movve Wallet</h3></div>
-            <div class="video-card" onclick="openVideo('video3.mp4')"><img src="thumb3.jpg"><h3>Invertir</h3></div>
-            <div class="video-card" onclick="openVideo('video4.mp4')"><img src="thumb4.jpg"><h3>Reinvertir</h3></div>
-            <div class="video-card" onclick="openVideo('video5.mp4')"><img src="thumb5.jpg"><h3>Retirar</h3></div>
-            <div class="video-card" onclick="openVideo('video6.mp4')"><img src="thumb6.jpg"><h3>Binario</h3></div>
-            <div class="video-card" onclick="openVideo('video7.mp4')"><img src="thumb7.jpg"><h3>Activar Binario</h3></div>
+            <div class="video-card" onclick="openMedia('video1.mp4', 'video')"><img src="thumb1.jpg"><h3>Crear Cartera</h3></div>
+            <div class="video-card" onclick="openMedia('video2.mp4', 'video')"><img src="thumb2.jpg"><h3>Movve Wallet</h3></div>
+            <div class="video-card" onclick="openMedia('video3.mp4', 'video')"><img src="thumb3.jpg"><h3>Invertir</h3></div>
+            <div class="video-card" onclick="openMedia('video4.mp4', 'video')"><img src="thumb4.jpg"><h3>Reinvertir</h3></div>
+            <div class="video-card" onclick="openMedia('video5.mp4', 'video')"><img src="thumb5.jpg"><h3>Retirar</h3></div>
+            <div class="video-card" onclick="openMedia('video6.mp4', 'video')"><img src="thumb6.jpg"><h3>Binario</h3></div>
+            <div class="video-card" onclick="openMedia('video7.mp4', 'video')"><img src="thumb7.jpg"><h3>Activar Binario</h3></div>
         </div>
     </section>
 
     <section id="galeria-fotos" class="section">
         <h2 class="section-title">Nuestra <span>Galería</span></h2>
         <div class="album">
-            <img src="foto1.jpg" onclick="openImage(this.src)">
-            <img src="foto2.jpg" onclick="openImage(this.src)">
-            <img src="foto3.jpg" onclick="openImage(this.src)">
-            <img src="foto4.jpg" onclick="openImage(this.src)">
-            <img src="foto5.jpg" onclick="openImage(this.src)">
-            <img src="foto6.jpg" onclick="openImage(this.src)">
-            <img src="foto7.jpg" onclick="openImage(this.src)">
+            <img src="foto1.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto2.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto3.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto4.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto5.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto6.jpg" onclick="openMedia(this.src, 'img')">
+            <img src="foto7.jpg" onclick="openMedia(this.src, 'img')">
         </div>
     </section>
 
-    <section class="cta section">
-        <h2>El futuro financiero es ahora</h2>
-        <div class="buttons">
-            <a href="https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8" class="btn btn-primary" target="_blank">
-                Entrar a Movve Wallet
-            </a>
-        </div>
-    </section>
+    <footer><p>© 2026 <span>MOVVE PLANETA</span></p></footer>
 
-    <footer>
-        <p>© 2026 <span>MOVVE PLANETA</span></p>
-    </footer>
-
-    <div id="videoModal" class="video-modal">
-        <div class="video-box">
-            <button class="close-btn" onclick="closeVideo()">✕</button>
-            <video id="modalVideo" controls></video>
+    <div id="mediaModal" class="modal" onclick="closeMedia()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeMedia()">✕</button>
+            <div id="modalContent"></div>
         </div>
     </div>
-
-    <div id="imageModal" onclick="closeImage()">
-        <div class="image-box">
-            <button class="close-image">✕</button>
-            <img id="fullImage" src="">
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'es',
-                includedLanguages: 'en,fr,de,it,pt,zh-CN,es',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-
-            // TRADUCCIÓN AUTOMÁTICA AL INICIAR
-            setTimeout(function() {
-                var userLang = navigator.language || navigator.userLanguage;
-                var langCode = userLang.split('-')[0];
-                if (langCode !== 'es') { execTranslate(langCode); }
-            }, 1000);
-        }
-
-        function execTranslate(lang) {
-            var combo = document.querySelector('.goog-te-combo');
-            if (combo) {
-                combo.value = lang;
-                combo.dispatchEvent(new Event('change'));
-                
-                // Actualizar UI
-                const langNames = {
-                    'es': 'Español', 'en': 'English', 'fr': 'Français', 
-                    'de': 'Deutsch', 'it': 'Italiano', 'pt': 'Português', 'zh-CN': '简体中文'
-                };
-                document.getElementById('current-lang').innerText = langNames[lang] || lang;
-                document.querySelector('.language-dropdown').classList.remove('active');
-            }
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('visible')
-            })
+        // TRADUCCIÓN
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,fr,de,it,pt,zh-CN,es', autoDisplay: false}, 'google_translate_element');
+        }
+        function toggleMenu() { document.getElementById('langMenu').classList.toggle('active'); }
+        function execTranslate(lang) {
+            var combo = document.querySelector('.goog-te-combo');
+            if(combo) { combo.value = lang; combo.dispatchEvent(new Event('change')); }
+            toggleMenu();
+        }
+
+        // SCROLL DINÁMICO (Ocultar Barra y Logo)
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const nav = document.getElementById('mainNav');
+            const logo = document.getElementById('fLogo');
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.classList.add('hidden');
+                logo.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
+                logo.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
         });
-        
-        document.querySelectorAll('.section,.card,.video-card,.album img')
-            .forEach(el => observer.observe(el));
 
-        function monetizarSocial(urlDestino) {
-            const urlSmartlink = "https://www.effectivegatecpm.com/xpxckz2f?key=df71c9b35e9fd812f18cb6537270a3de"; 
-            window.open(urlSmartlink, '_blank');
-            window.location.href = urlDestino;
+        // MODAL UNIFICADO
+        function openMedia(src, type) {
+            const content = document.getElementById('modalContent');
+            if(type === 'video') {
+                content.innerHTML = `<video src="${src}" controls autoplay style="width:100%; display:block;"></video>`;
+            } else {
+                content.innerHTML = `<img src="${src}" style="width:100%; display:block;">`;
+            }
+            document.getElementById('mediaModal').style.display = 'flex';
+        }
+        function closeMedia() { 
+            document.getElementById('mediaModal').style.display = 'none'; 
+            document.getElementById('modalContent').innerHTML = '';
         }
 
-        function openVideo(src) {
-            document.getElementById('modalVideo').src = src;
-            document.getElementById('videoModal').style.display = 'flex';
-        }
+        // ANIMACIONES
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-        function closeVideo() {
-            const v = document.getElementById('modalVideo');
-            v.pause();
-            v.src = '';
-            document.getElementById('videoModal').style.display = 'none';
-        }
-
-        function openImage(src) {
-            document.getElementById('fullImage').src = src;
-            document.getElementById('imageModal').style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('imageModal').style.display = 'none';
+        function monetizarSocial(url) {
+            window.open("https://www.effectivegatecpm.com/xpxckz2f?key=df71c9b35e9fd812f18cb6537270a3de", '_blank');
+            window.location.href = url;
         }
     </script>
-
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
 
