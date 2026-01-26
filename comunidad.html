@@ -49,6 +49,67 @@
             display: inline-block;
         }
         .btn-back:hover { background: #9D00FF; color: white; box-shadow: 0 0 20px #9D00FF; }
+        
+        /* Estilos para la galería */
+        .gallery-container {
+            position: relative;
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .gallery-image {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery-image.active {
+            opacity: 1;
+        }
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+       .controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+        .dots {
+            margin-top: 10px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: #717171;
+        }
     </style>
 </head>
 <body>
@@ -64,12 +125,80 @@
         <p>El poder de MOVVE PLANETA reside en su gente. Un sistema binario diseñado para que el éxito de uno impulse el éxito de todos.</p>
         <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
     </div>
+
+    <!-- Galería de Comunidad -->
+    <div class="gallery-container">
+        <h2>Galería de Comunidad</h2>
+        <div class="gallery">
+            <img src="imagen1.jpg" class="gallery-image" alt="Imagen de la comunidad 1">
+            <img src="imagen2.jpg" class="gallery-image" alt="Imagen de la comunidad 2">
+            <img src="imagen3.jpg" class="gallery-image" alt="Imagen de la comunidad 3">
+            <!-- Agrega más imágenes según sea necesario -->
+        </div>
+        <div class="controls">
+            <button class="prev-btn">&#10094;</button>
+            <button class="next-btn">&#10095;</button>
+        </div>
+        <div class="dots">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        document.querySelector('.next-btn').addEventListener('click', nextImage);
+        document.querySelector('.prev-btn').addEventListener('click', prevImage);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const index = parseInt(e.target.getAttribute('data-index'), 10);
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+
+         // Auto-play functionality
+        let autoPlayInterval = setInterval(nextImage, 3000);
+
+        // Pause and resume on hover
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+        galleryContainer.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(nextImage, 3000);
+        });
+
+        // Inicializar la galería
+        showImage(currentIndex);
+    </script>
 </body>
 </html>
-
-
-
-
 
 
 
