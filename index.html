@@ -86,25 +86,42 @@
             50% { opacity: 0.6; }
         }
 
-        /* ================= TRADUCTOR GOOGLE ESTILO GALAXIA ================= */
-        #google_translate_element {
+        /* ================= BOTÓN DE IDIOMA DINÁMICO (ARRIBA DERECHA) ================= */
+        .language-selector {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
-        .goog-te-gadget-simple {
-            background: rgba(0, 0, 0, 0.7) !important;
-            border: 1px solid rgba(76, 255, 46, 0.5) !important;
-            padding: 5px 10px !important;
-            border-radius: 20px !important;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 255, 46, 0.6);
+            border-radius: 30px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 0 15px rgba(76, 255, 46, 0.2);
         }
-        .goog-te-gadget-simple span {
-            color: #4CFF2E !important;
-            font-size: 12px !important;
+
+        .language-selector:hover {
+            background: rgba(76, 255, 46, 0.15);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(76, 255, 46, 0.5);
         }
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
+
+        .language-selector i {
+            color: #4CFF2E;
+            font-size: 16px;
+        }
+
+        /* Ocultar rastro de Google */
+        #google_translate_element, .skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
         /* ================= BOTONES SOCIALES ================= */
@@ -204,7 +221,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         }
 
-        /* ================= LIGHTBOX FOTOS ================= */
+        /* ================= ESTILOS NUEVOS: LIGHTBOX FOTOS ================= */
         .album img {
             cursor: pointer;
         }
@@ -251,12 +268,17 @@
 
 <body id="inicio">
 
+    <div class="language-selector" onclick="cambiarIdioma()">
+        <i class="fas fa-globe-americas"></i>
+        <span id="lang-text">ES / EN</span>
+    </div>
+
+    <div id="google_translate_element"></div>
+
     <div class="galaxy-bg">
         <div class="stars"></div>
         <div class="planet"></div>
     </div>
-
-    <div id="google_translate_element"></div>
 
     <div class="floating-logo">
         <img src="logotipo-movve-planeta.png" alt="MOVVE PLANETA">
@@ -409,10 +431,25 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
-                includedLanguages: 'en,de,fr,pt,it,es',
+                includedLanguages: 'en,es',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
+        }
+
+        function cambiarIdioma() {
+            var combo = document.querySelector('.goog-te-combo');
+            var text = document.getElementById('lang-text');
+            if (combo) {
+                if (combo.value === 'en') {
+                    combo.value = 'es';
+                    text.innerText = 'ES / EN';
+                } else {
+                    combo.value = 'en';
+                    text.innerText = 'EN / ES';
+                }
+                combo.dispatchEvent(new Event('change'));
+            }
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -447,7 +484,7 @@
             document.getElementById('videoModal').style.display = 'none';
         }
 
-        // FUNCIONES DE IMAGEN
+        // FUNCIONES DE IMAGEN (MISMA PESTAÑA)
         function openImage(src) {
             document.getElementById('fullImage').src = src;
             document.getElementById('imageModal').style.display = 'flex';
@@ -460,7 +497,6 @@
 
 </body>
 </html>
-
 
 
 
