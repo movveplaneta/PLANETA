@@ -457,20 +457,16 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
-                // Idiomas incluidos (puedes añadir más códigos aquí)
                 includedLanguages: 'en,fr,de,it,pt,zh-CN,es',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
 
-            // TRADUCCIÓN AUTOMÁTICA SEGÚN EL NAVEGADOR
+            // TRADUCCIÓN AUTOMÁTICA AL INICIAR
             setTimeout(function() {
-                var userLang = navigator.language || navigator.userLanguage; 
-                var langCode = userLang.split('-')[0]; // Toma 'en' de 'en-US'
-                
-                if (langCode !== 'es') {
-                    execTranslate(langCode);
-                }
+                var userLang = navigator.language || navigator.userLanguage;
+                var langCode = userLang.split('-')[0];
+                if (langCode !== 'es') { execTranslate(langCode); }
             }, 1000);
         }
 
@@ -479,14 +475,14 @@
             if (combo) {
                 combo.value = lang;
                 combo.dispatchEvent(new Event('change'));
-                document.querySelector('.language-dropdown').classList.remove('active');
                 
-                // Actualiza el texto del botón principal
+                // Actualizar UI
                 const langNames = {
                     'es': 'Español', 'en': 'English', 'fr': 'Français', 
                     'de': 'Deutsch', 'it': 'Italiano', 'pt': 'Português', 'zh-CN': '简体中文'
                 };
                 document.getElementById('current-lang').innerText = langNames[lang] || lang;
+                document.querySelector('.language-dropdown').classList.remove('active');
             }
         }
     </script>
@@ -532,6 +528,7 @@
 
 </body>
 </html>
+
 
 
 
