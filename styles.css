@@ -1,4 +1,4 @@
-/* ================= RESET GENERAL ================= */
+/* ================= RESET Y BASE ================= */
 * {
     margin: 0;
     padding: 0;
@@ -10,9 +10,10 @@ body {
     background: #000;
     color: #fff;
     overflow-x: hidden;
+    padding-top: 0; /* Ajustado para que el hero luzca mejor */
 }
 
-/* ================= FONDO GALAXIA VIVA ================= */
+/* ================= FONDO GALAXIA VIVA (NUEVO) ================= */
 .galaxy-bg {
     position: fixed;
     inset: 0;
@@ -49,7 +50,6 @@ body {
     z-index: -1;
 }
 
-/* Anillo del planeta */
 .planet::after {
     content: "";
     position: absolute;
@@ -62,7 +62,6 @@ body {
     transform: translate(-50%, -50%) rotateX(75deg);
 }
 
-/* Estrellas parpadeantes */
 .stars {
     position: absolute;
     width: 100%;
@@ -72,21 +71,21 @@ body {
     animation: starsTwinkle 4s ease-in-out infinite;
 }
 
-/* Animaciones de Fondo */
-@keyframes nebulaMove {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+/* ================= BARRA DE NAVEGACIÓN ================= */
+.navbar {
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+    background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 25px; z-index: 10001;
+    border-bottom: 1px solid rgba(76, 255, 46, 0.3);
+    transition: transform 0.4s ease;
 }
+.navbar.hidden { transform: translateY(-100%); }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-@keyframes starsTwinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.7; }
-}
+.nav-left { display: flex; align-items: center; gap: 15px; }
+.nav-logo { height: 45px; filter: drop-shadow(0 0 5px #4CFF2E); }
+.nav-title { font-size: 1.4rem; font-weight: bold; color: #fff; }
+.nav-title span { color: #4CFF2E; }
 
 /* ================= LOGO FLOTANTE ================= */
 .floating-logo {
@@ -94,9 +93,10 @@ body {
     top: 80px;
     left: 80px;
     z-index: 40;
+    transition: 0.4s ease;
     animation: floatLogo 6s ease-in-out infinite;
 }
-
+.floating-logo.hidden { opacity: 0; transform: scale(0.5); }
 .floating-logo img {
     width: 110px;
     filter: drop-shadow(0 0 12px #4CFF2E);
@@ -110,9 +110,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.hero-video {
     overflow: hidden;
 }
 
@@ -129,11 +126,7 @@ body {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.9)
-    );
+    background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.9));
     z-index: 0;
 }
 
@@ -144,71 +137,15 @@ body {
     padding: 20px;
 }
 
-.hero h1 {
-    font-size: clamp(2.4rem, 5vw, 3.5rem);
-    margin-bottom: 15px;
-}
+.hero h1 { font-size: clamp(2.4rem, 5vw, 3.5rem); margin-bottom: 15px; }
+.hero span { color: #4CFF2E; }
 
-.hero span {
-    color: #4CFF2E;
-}
+/* ================= SECCIONES Y CARDS ================= */
+.section { padding: 90px 20px; text-align: center; opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+.section-title { font-size: 2.4rem; margin-bottom: 50px; }
+.section-title span { color: #4CFF2E; }
 
-.hero p {
-    opacity: 0.85;
-    line-height: 1.6;
-}
-
-/* ================= BOTONES ================= */
-.buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 32px;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s ease;
-    border: none;
-}
-
-.btn-primary {
-    background: #4CFF2E;
-    color: #000;
-}
-
-.btn-secondary {
-    background: transparent;
-    border: 2px solid #4CFF2E;
-    color: #4CFF2E;
-}
-
-.btn:hover {
-    transform: scale(1.06);
-}
-
-/* ================= SECCIONES ================= */
-.section {
-    padding: 90px 20px;
-    text-align: center;
-}
-
-.section-title {
-    font-size: 2.4rem;
-    margin-bottom: 50px;
-}
-
-.section-title span {
-    color: #4CFF2E;
-}
-
-/* ================= CARDS & ANIMACIONES ECOSISTEMA ================= */
 .cards {
     max-width: 1100px;
     margin: auto;
@@ -217,324 +154,109 @@ body {
     gap: 25px;
 }
 
-.card-link {
-    text-decoration: none;
-    color: inherit;
-}
-
 .card {
     background: rgba(255,255,255,0.05);
     padding: 30px;
     border-radius: 18px;
     backdrop-filter: blur(6px);
     transition: 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
     animation: floatCard 4s ease-in-out infinite;
     animation-delay: var(--delay, 0s);
 }
 
-/* Efectos de Brillo Neón */
-.card-glow-green:hover { 
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(76, 255, 46, 0.4); 
-    border: 1px solid #4CFF2E; 
-}
-.card-glow-blue:hover { 
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(0, 150, 255, 0.4); 
-    border: 1px solid #0096FF; 
-}
-.card-glow-purple:hover { 
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); 
-    border: 1px solid #9D00FF; 
-}
+.card-glow-green:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(76, 255, 46, 0.4); border-color: #4CFF2E; }
+.card-glow-blue:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(0, 150, 255, 0.4); border-color: #0096FF; }
+.card-glow-purple:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); border-color: #9D00FF; }
 
-@keyframes floatCard {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-
-/* ================= GALERÍA ================= */
-.album {
+/* ================= GALERÍA DE VIDEOS Y FOTOS ================= */
+.video-gallery, .album {
     max-width: 1100px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
-    gap: 10px;
-}
-
-.album img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.album img:hover {
-    transform: scale(1.05);
-}
-
-/* ================= LIGHTBOX ================= */
-.lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 5000;
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox img {
-    max-width: 50%;
-    max-height: 50%;
-    border-radius: 12px;
-}
-
-.lightbox .close {
-    position: absolute;
-    top: 25px;
-    right: 35px;
-    font-size: 32px;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* ================= CTA ================= */
-.cta {
-    padding: 80px 20px;
-    text-align: center;
-    background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(0,255,156,0.08)
-    );
-}
-
-.cta h2 {
-    font-size: 2.3rem;
-    margin-bottom: 10px;
-}
-
-/* ================= FOOTER ================= */
-footer {
-    padding: 25px;
-    text-align: center;
-    opacity: 0.65;
-}
-
-footer span {
-    color: #4CFF2E;
-}
-
-/* ================= WHATSAPP ================= */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #4CFF2E;
-    padding: 14px 16px;
-    border-radius: 50%;
-    font-size: 26px;
-    color: #fff;
-    text-decoration: none;
-    z-index: 3000;
-}
-
-/* ================= MODAL PDF ================= */
-.pdf-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    z-index: 4000;
-    justify-content: center;
-    align-items: center;
-}
-
-.pdf-box {
-    width: 50%;
-    height: 55%;
-    background: #000;
-    border-radius: 12px;
-    position: relative;
-}
-
-.pdf-box iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #4CFF2E;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-}
-
-/* ================= MENÚ ================= */
-.menu-btn {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 5000;
-    background: rgba(0,0,0,0.7);
-    color: #4CFF2E;
-    border: 2px solid #4CFF2E;
-    border-radius: 18px;
-    font-size: 20px;
-    padding: 10px 14px;
-    cursor: pointer;
-}
-
-.menu {
-    position: fixed;
-    top: 0;
-    right: -240px;
-    width: 240px;
-    height: 100vh;
-    background: rgba(0,0,0,0.25);
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    padding-top: 90px;
-    gap: 25px;
-    transition: 0.4s ease;
-    z-index: 4500;
-}
-
-.menu a {
-    color: #4CFF2E;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding-left: 30px;
-}
-
-.menu.active {
-    right: 0;
-}
-
-/* ================= ANIMACIONES EXTRAS ================= */
-@keyframes floatLogo {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-/* ================= GALERÍA DE VIDEOS ================= */
-.video-gallery {
-    max-width: 1000px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
     gap: 15px;
 }
 
-.video-card {
+.video-card, .album img {
     cursor: pointer;
     background: rgba(255,255,255,0.05);
     border-radius: 10px;
     overflow: hidden;
     transition: 0.3s ease;
-}
-
-.video-card img {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
 }
 
-.video-card h3 {
-    padding: 7px;
-    font-size: 1.1rem;
-    text-align: center;
-}
-
-.video-card:hover {
+.video-card:hover, .album img:hover {
     transform: translateY(-8px);
     box-shadow: 0 0 20px rgba(0,255,156,0.25);
+    border: 1px solid #4CFF2E;
 }
 
-/* ================= MODAL VIDEO PREMIUM (TAMAÑO REDUCIDO) ================= */
-.video-modal {
+/* ================= MODAL VIDEO PREMIUM ================= */
+.modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(12px); 
-    z-index: 6000;
+    z-index: 20000;
     justify-content: center;
     align-items: center;
-    transition: all 0.4s ease;
 }
 
-.video-box {
-    width: 80%;       /* Ocupa menos ancho relativo */
-    max-width: 350px;  /* Tamaño fijo máximo más pequeño */
+.modal-box {
+    width: 90%;
+    max-width: 380px; /* Tamaño reducido como pediste */
     position: relative;
-    padding: 5px;      /* Padding más fino para que se vea más limpio */
+    background: #000;
+    border-radius: 15px;
+    padding: 5px;
+    border: 2px solid rgba(76, 255, 46, 0.3);
 }
 
-.video-box video {
+.modal-box video, .modal-box img {
     width: 100%;
-    border-radius: 15px; /* Bordes un poco menos redondeados para el tamaño pequeño */
-    border: 2px solid rgba(76, 255, 46, 0.3);
-    box-shadow: 0 0 25px rgba(76, 255, 46, 0.2);
+    border-radius: 12px;
     display: block;
 }
 
-/* Ajuste del botón cerrar para el nuevo tamaño */
-.video-box .close-btn {
+.close-btn {
     position: absolute;
-    top: -35px; /* Más cerca del video ya que es más pequeño */
+    top: -40px;
     right: 0;
     background: transparent;
     color: #4CFF2E;
-    font-size: 24px; /* Un poco más pequeño también */
+    font-size: 28px;
     border: none;
     cursor: pointer;
-    text-shadow: 0 0 10px rgba(76, 255, 46, 0.8);
 }
 
-.presentacion-movve {
-  padding: 50px 15px;
-  background: rgba(0,0,0,0.7);
-  text-align: center;
+/* ================= BOTONES Y FOOTER ================= */
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
 }
+.btn-primary { background: #4CFF2E; color: #000; }
+.btn-secondary { background: transparent; border: 2px solid #4CFF2E; color: #4CFF2E; }
 
-.presentacion-movve h2 {
-  color: #4CFF2E;
-  font-size: 36px;
-  margin-bottom: 40px;
-  text-shadow: 0 0 20px rgba(76,255,46,0.4);
-}
+footer { padding: 40px; text-align: center; }
+footer span { color: #4CFF2E; }
 
-.video-resultados {
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 40px rgba(0,255,255,0.25);
-}
+/* ================= ANIMACIONES ================= */
+@keyframes nebulaMove { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+@keyframes starsTwinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+@keyframes floatLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-.video-resultados video {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.banner-nativo{
-  margin:40px 0;
-  display:flex;
-  justify-content:center;
-}
 
 
 
