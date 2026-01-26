@@ -48,27 +48,83 @@
             transition: 0.3s;
             display: inline-block;
         }
-        .btn-back:hover { background: #0096FF; color: white; box-shadow: 0 0 20px #0096FF; }
-    </style>
-</head>
-<body>
-    <div class="video-bg-container">
-        <video autoplay muted loop playsinline aria-label="Video de fondo de inversión">
-            <source src="video-inversion.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
+        .btn-back:hover { background: #0096FF; color: white; box-shadow: 0 0 20px #0096FF; } </style> </head> <body> <div class="video-bg-container"> <video autoplay muted loop playsinline aria-label="Video de fondo de inversión"> <source src="video-inversion.mp4" type="video/mp4"> </video> <div class="overlay"></div> </div> <div class="content"> <h1>💰 Inversión <span>Segura</span></h1> <p>Transparencia total en cada movimiento. Tu capital trabaja en un entorno tecnológico de alta precisión.</p> <div class="bank-note"> <i class="fas fa-university"></i> Próximamente: Retiros de ganancias directamente a tu <strong>cuenta bancaria</strong>. </div> <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
     </div>
 
-    <div class="content">
-        <h1>💰 Inversión <span>Segura</span></h1>
-        <p>Transparencia total en cada movimiento. Tu capital trabaja en un entorno tecnológico de alta precisión.</p>
-        <div class="bank-note">
-            <i class="fas fa-university"></i> Próximamente: Retiros de ganancias directamente a tu <strong>cuenta bancaria</strong>.
+    <!-- Galería de Comunidad -->
+    <div class="gallery-container">
+        <h2>Galería de Comunidad</h2>
+        <div class="gallery">
+            <img src="imagen1.jpg" class="gallery-image" alt="Imagen de la comunidad 1">
+            <img src="imagen2.jpg" class="gallery-image" alt="Imagen de la comunidad 2">
+            <img src="imagen3.jpg" class="gallery-image" alt="Imagen de la comunidad 3">
+            <!-- Agrega más imágenes según sea necesario -->
         </div>
-        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
+        <div class="controls">
+            <button class="prev-btn">&#10094;</button>
+            <button class="next-btn">&#10095;</button>
+        </div>
+        <div class="dots">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
     </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        document.querySelector('.next-btn').addEventListener('click', nextImage);
+        document.querySelector('.prev-btn').addEventListener('click', prevImage);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const index = parseInt(e.target.getAttribute('data-index'), 10);
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+
+         // Auto-play functionality
+        let autoPlayInterval = setInterval(nextImage, 3000);
+
+        // Pause and resume on hover
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+        galleryContainer.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(nextImage, 3000);
+        });
+
+        // Inicializar la galería
+        showImage(currentIndex);
+    </script>
 </body>
 </html>
+
 
 
 
