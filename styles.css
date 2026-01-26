@@ -530,7 +530,11 @@ footer span {
     display: block;
 }
 
-
+.banner-nativo{
+  margin:40px 0;
+  display:flex;
+  justify-content:center;
+}
 
 
 
