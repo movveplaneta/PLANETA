@@ -4,68 +4,72 @@
     <meta charset="UTF-8">
     <title>Crecimiento - MOVVE PLANETA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        .content-page { position: relative; z-index: 10; padding: 100px 20px; text-align: center; max-width: 800px; margin: auto; }
-        .back-btn { margin-top: 30px; display: inline-block; color: #4CFF2E; text-decoration: none; border: 1px solid #4CFF2E; padding: 10px 20px; border-radius: 20px; transition: 0.3s; }
-        .back-btn:hover { background: #4CFF2E; color: #000; }
+        * { margin: 0; padding: 0; box-box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        /* VIDEO DE FONDO */
+        .video-bg-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .video-bg-container video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,20,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        /* CONTENIDO */
+        body { color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .content {
+            text-align: center;
+            max-width: 700px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(76, 255, 46, 0.3);
+            box-shadow: 0 0 40px rgba(76, 255, 46, 0.1);
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 20px; }
         h1 span { color: #4CFF2E; }
-
-          /* Estilos para que el logo se integre perfectamente al fondo */
-        .logo-video-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: -40px;
-            position: relative;
-            z-index: 11;
-            /* El modo screen elimina el fondo negro del video si lo tiene */
-            mix-blend-mode: screen; 
+        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 30px; }
+        
+        .btn-back {
+            text-decoration: none;
+            color: #4CFF2E;
+            border: 1px solid #4CFF2E;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: 0.3s;
+            display: inline-block;
         }
-
-        .logo-video {
-            width: 100px; /* Tamaño ajustado para destacar */
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(76, 255, 46, 0.5));
-            animation: floatLogoVideo 5s ease-in-out infinite;
-            
-            /* Máscara para que las orillas del video se desvanezcan */
-            mask-image: radial-gradient(circle, black 50%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
-        }
-
-        @keyframes floatLogoVideo {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-15px) scale(1.05); }
-        }
+        .btn-back:hover { background: #4CFF2E; color: black; box-shadow: 0 0 20px #4CFF2E; }
     </style>
 </head>
 <body>
-    <div class="galaxy-bg">
-        <div class="stars"></div>
-        <div class="planet"></div>
-    </div>
-    
-    <div class="logo-video-container">
-        <video autoplay muted loop playsinline class="logo-video">
-            <source src="tu-logo-video1.mp4" type="video/mp4">
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline>
+            <source src="video-crecimiento.mp4" type="video/mp4">
         </video>
+        <div class="overlay"></div>
     </div>
 
-    <div class="content-page">
-        <h1>🚀 Estrategia de <span>Crecimiento</span></h1>
-        <p style="margin-top: 20px; font-size: 1.2rem; line-height: 1.8; opacity: 0.9;">
-            En MOVVE PLANETA, el crecimiento no es solo un número, es una visión. 
-            Aquí puedes explicar detalladamente cómo funciona el interés compuesto, 
-            las proyecciones a largo plazo y cómo tu inversión se multiplica.
-        </p>
-        <a href="index.html#ecosistema" class="back-btn">← Volver al Ecosistema</a>
+    <div class="content">
+        <h1>🚀 Nuestro <span>Crecimiento</span></h1>
+        <p>En MOVVE PLANETA, el crecimiento es una constante. No solo escalamos capital, escalamos oportunidades globales para una comunidad que no conoce límites.</p>
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
     </div>
 </body>
 </html>
-
-
-
 
 
 
