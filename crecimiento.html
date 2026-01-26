@@ -9,6 +9,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
+        body { color: white; min-height: 100vh; overflow-x: hidden; }
+
         /* VIDEO DE FONDO */
         .video-bg-container {
             position: fixed;
@@ -28,8 +30,15 @@
             background: radial-gradient(circle, rgba(0,20,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
         }
 
-        /* CONTENIDO */
-        body { color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        /* CONTENIDO PRINCIPAL */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            width: 100%;
+        }
+
         .content {
             text-align: center;
             max-width: 700px;
@@ -39,11 +48,13 @@
             border-radius: 30px;
             border: 1px solid rgba(76, 255, 46, 0.3);
             box-shadow: 0 0 40px rgba(76, 255, 46, 0.1);
+            margin-bottom: 40px;
         }
+
         h1 { font-size: 2.5rem; margin-bottom: 20px; }
         h1 span { color: #4CFF2E; }
         p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 30px; }
-        
+
         .btn-back {
             text-decoration: none;
             color: #4CFF2E;
@@ -55,100 +66,126 @@
         }
         .btn-back:hover { background: #4CFF2E; color: black; box-shadow: 0 0 20px #4CFF2E; }
 
-        /* Estilos de la galería */
+        /* GALERÍA CORREGIDA */
         .gallery-container {
             position: relative;
             max-width: 700px;
-            margin: 40px auto 0;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
+
         .gallery {
             position: relative;
             width: 100%;
+            height: 400px; /* Altura fija para que las imágenes absolutas se vean */
             overflow: hidden;
+            border-radius: 10px;
         }
+
         .gallery-image {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
         }
+
         .gallery-image.active {
             opacity: 1;
         }
+
+        /* CONTROLES */
         .controls {
             position: absolute;
             top: 50%;
             width: 100%;
+            left: 0;
             display: flex;
             justify-content: space-between;
+            padding: 0 10px;
             transform: translateY(-50%);
+            pointer-events: none; /* Para que no estorbe al hacer click */
+            z-index: 10;
+        }
 
-            .controls button {
-            background-color: rgba(0, 0, 0, 0.5);
-            border: none;
+        .controls button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(76, 255, 46, 0.5);
             color: white;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            padding: 10px;
+            padding: 15px;
             border-radius: 50%;
-            margin: 0 10px;
+            pointer-events: auto; /* Reactiva el click */
+            transition: 0.3s;
         }
-        .dots {
-            margin-top: 10px;
+
+        .controls button:hover {
+            background: #4CFF2E;
+            color: black;
         }
+
+        .dots { margin-top: 15px; }
         .dot {
             height: 12px;
             width: 12px;
             margin: 0 5px;
-            background-color: #bbb;
+            background-color: rgba(255,255,255,0.3);
             border-radius: 50%;
             display: inline-block;
             cursor: pointer;
+            transition: 0.3s;
+        }
 
-            .btn-back:hover { background: #4CFF2E; color: black; box-shadow: 0 0 20px #4CFF2E; } 
-            </style> 
-</head> 
-    <body> 
-        <div class="video-bg-container"> 
-            <video autoplay muted loop playsinline aria-label="Video de fondo de crecimiento"> 
-            <source src="video-crecimiento.mp4" type="video/mp4"> 
-            </video> 
-            <div class="overlay"></div> 
-        </div> 
-        
-        <div class="content"> <h1>🚀 Nuestro <span>Crecimiento</span></h1> <p>En MOVVE PLANETA, el crecimiento es una constante. No solo escalamos capital, escalamos oportunidades globales para una comunidad que no conoce límites.</p> 
+        .dot.active {
+            background-color: #4CFF2E;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline>
+            <source src="video-crecimiento.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="wrapper">
+        <div class="content">
+            <h1>🚀 Nuestro <span>Crecimiento</span></h1>
+            <p>En MOVVE PLANETA, el crecimiento es una constante. No solo escalamos capital, escalamos oportunidades globales para una comunidad que no conoce límites.</p>
             <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
-            
- 
-     </div> <!-- Cierre de .content -->
-    <!-- Galería de imágenes para Crecimiento -->
-    <div class="gallery-container">
-        <h2>Galería de Crecimiento</h2>
-        <div class="gallery">
-            <img src="imagen1.jpg" class="gallery-image" alt="Crecimiento 1">
-            <img src="imagen2.jpg" class="gallery-image" alt="Crecimiento 2">
-            <img src="imagen3.jpg" class="gallery-image" alt="Crecimiento 3">
-            <!-- Agrega más imágenes según sea necesario -->
         </div>
-        <div class="controls">
-            <button class="prev-btn">&#10094;</button>
-            <button class="next-btn">&#10095;</button>
+
+        <div class="gallery-container">
+            <h2 style="margin-bottom: 15px;">Galería de Crecimiento</h2>
+            <div class="gallery">
+                <img src="imagen1.jpg" class="gallery-image active" alt="Crecimiento 1">
+                <img src="imagen2.jpg" class="gallery-image" alt="Crecimiento 2">
+                <img src="imagen3.jpg" class="gallery-image" alt="Crecimiento 3">
+            </div>
+            <div class="controls">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
         </div>
-        <div class="dots">
-            <span class="dot" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-        </div>
+    </div>
 
     <script>
-        // Lógica de la galería igual que en Comunidad
         let currentIndex = 0;
         const images = document.querySelectorAll('.gallery-image');
         const dots = document.querySelectorAll('.dot');
@@ -173,31 +210,36 @@
             showImage(currentIndex);
         }
 
-        document.querySelector('.next-btn').addEventListener('click', nextImage);
-        document.querySelector('.prev-btn').addEventListener('click', prevImage);
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            nextImage();
+            resetTimer();
+        });
+
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            prevImage();
+            resetTimer();
+        });
 
         dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
-                const index = parseInt(e.target.getAttribute('data-index'), 10);
-                currentIndex = index;
+                currentIndex = parseInt(e.target.getAttribute('data-index'));
                 showImage(currentIndex);
+                resetTimer();
             });
         });
 
-        // Auto-play functionality
-        let autoPlayInterval = setInterval(nextImage, 3000);
+        // Auto-play
+        let autoPlayInterval = setInterval(nextImage, 4000);
 
-        // Pause and resume on hover
-        const galleryContainer = document.querySelector('.gallery-container');
-        galleryContainer.addEventListener('mouseenter', () => {
+        function resetTimer() {
             clearInterval(autoPlayInterval);
-        });
-        galleryContainer.addEventListener('mouseleave', () => {
-            autoPlayInterval = setInterval(nextImage, 3000);
-        });
+            autoPlayInterval = setInterval(nextImage, 4000);
+        }
 
-        // Inicializar la galería
-        showImage(currentIndex);
+        // Pausa al pasar el mouse
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        galleryContainer.addEventListener('mouseleave', () => autoPlayInterval = setInterval(nextImage, 4000));
     </script>
 </body>
 </html>
