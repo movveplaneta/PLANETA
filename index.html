@@ -86,42 +86,63 @@
             50% { opacity: 0.6; }
         }
 
-        /* ================= BOTÓN DE IDIOMA DINÁMICO (ARRIBA DERECHA) ================= */
-        .language-selector {
+        /* ================= SELECTOR DE IDIOMAS MULTIPLE ================= */
+        .language-container {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 10000;
-            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .language-selected {
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(76, 255, 46, 0.6);
+            border: 1px solid #4CFF2E;
             border-radius: 30px;
             padding: 8px 18px;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
             color: #fff;
-            font-family: sans-serif;
             font-weight: bold;
+            box-shadow: 0 0 15px rgba(76, 255, 46, 0.3);
+        }
+
+        .language-dropdown {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(76, 255, 46, 0.4);
+            border-radius: 15px;
+            margin-top: 10px;
+            padding: 10px 0;
+            width: 150px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .language-dropdown.active { display: block; }
+
+        .lang-option {
+            padding: 8px 20px;
+            color: white;
+            cursor: pointer;
             font-size: 14px;
-            box-shadow: 0 0 15px rgba(76, 255, 46, 0.2);
+            transition: 0.2s;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .language-selector:hover {
-            background: rgba(76, 255, 46, 0.15);
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(76, 255, 46, 0.5);
-        }
-
-        .language-selector i {
+        .lang-option:hover {
+            background: rgba(76, 255, 46, 0.2);
             color: #4CFF2E;
-            font-size: 16px;
         }
 
-        /* Ocultar rastro de Google */
-        #google_translate_element, .skiptranslate { display: none !important; }
+        /* Ocultar barra de Google */
+        #google_translate_element, .skiptranslate, .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
 
         /* ================= BOTONES SOCIALES ================= */
@@ -221,11 +242,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
         }
 
-        /* ================= ESTILOS NUEVOS: LIGHTBOX FOTOS ================= */
-        .album img {
-            cursor: pointer;
-        }
-
+        /* ================= LIGHTBOX FOTOS ================= */
         #imageModal {
             display: none;
             position: fixed;
@@ -250,7 +267,6 @@
             width: 100%;
             height: auto;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 255, 156, 0.3);
         }
 
         .close-image {
@@ -268,9 +284,19 @@
 
 <body id="inicio">
 
-    <div class="language-selector" onclick="cambiarIdioma()">
-        <i class="fas fa-globe-americas"></i>
-        <span id="lang-text">ES / EN</span>
+    <div class="language-container">
+        <div class="language-selected" onclick="document.querySelector('.language-dropdown').classList.toggle('active')">
+            <i class="fas fa-language"></i> <span id="current-lang">Español</span>
+        </div>
+        <div class="language-dropdown">
+            <div class="lang-option" onclick="execTranslate('es')">Español 🇪🇸</div>
+            <div class="lang-option" onclick="execTranslate('en')">English 🇺🇸</div>
+            <div class="lang-option" onclick="execTranslate('fr')">Français 🇫🇷</div>
+            <div class="lang-option" onclick="execTranslate('de')">Deutsch 🇩🇪</div>
+            <div class="lang-option" onclick="execTranslate('it')">Italiano 🇮🇹</div>
+            <div class="lang-option" onclick="execTranslate('pt')">Português 🇧🇷</div>
+            <div class="lang-option" onclick="execTranslate('zh-CN')">简体中文 🇨🇳</div>
+        </div>
     </div>
 
     <div id="google_translate_element"></div>
@@ -431,24 +457,36 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
-                includedLanguages: 'en,es',
+                // Idiomas incluidos (puedes añadir más códigos aquí)
+                includedLanguages: 'en,fr,de,it,pt,zh-CN,es',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
+
+            // TRADUCCIÓN AUTOMÁTICA SEGÚN EL NAVEGADOR
+            setTimeout(function() {
+                var userLang = navigator.language || navigator.userLanguage; 
+                var langCode = userLang.split('-')[0]; // Toma 'en' de 'en-US'
+                
+                if (langCode !== 'es') {
+                    execTranslate(langCode);
+                }
+            }, 1000);
         }
 
-        function cambiarIdioma() {
+        function execTranslate(lang) {
             var combo = document.querySelector('.goog-te-combo');
-            var text = document.getElementById('lang-text');
             if (combo) {
-                if (combo.value === 'en') {
-                    combo.value = 'es';
-                    text.innerText = 'ES / EN';
-                } else {
-                    combo.value = 'en';
-                    text.innerText = 'EN / ES';
-                }
+                combo.value = lang;
                 combo.dispatchEvent(new Event('change'));
+                document.querySelector('.language-dropdown').classList.remove('active');
+                
+                // Actualiza el texto del botón principal
+                const langNames = {
+                    'es': 'Español', 'en': 'English', 'fr': 'Français', 
+                    'de': 'Deutsch', 'it': 'Italiano', 'pt': 'Português', 'zh-CN': '简体中文'
+                };
+                document.getElementById('current-lang').innerText = langNames[lang] || lang;
             }
         }
     </script>
@@ -464,14 +502,12 @@
         document.querySelectorAll('.section,.card,.video-card,.album img')
             .forEach(el => observer.observe(el));
 
-        // MONETIZACIÓN DOBLE ENLACE REDES SOCIALES
         function monetizarSocial(urlDestino) {
             const urlSmartlink = "https://www.effectivegatecpm.com/xpxckz2f?key=df71c9b35e9fd812f18cb6537270a3de"; 
             window.open(urlSmartlink, '_blank');
             window.location.href = urlDestino;
         }
 
-        // FUNCIONES DE VIDEO
         function openVideo(src) {
             document.getElementById('modalVideo').src = src;
             document.getElementById('videoModal').style.display = 'flex';
@@ -484,7 +520,6 @@
             document.getElementById('videoModal').style.display = 'none';
         }
 
-        // FUNCIONES DE IMAGEN (MISMA PESTAÑA)
         function openImage(src) {
             document.getElementById('fullImage').src = src;
             document.getElementById('imageModal').style.display = 'flex';
