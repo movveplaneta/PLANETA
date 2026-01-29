@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inversión - MOVVE PLANETA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre la inversión segura con MOVVE PLANETA, donde la transparencia y la tecnología van de la mano.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { color: white; min-height: 100vh; overflow-x: hidden; }
+
+        /* VIDEO DE FONDO */
+        .video-bg-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .video-bg-container video { width: 100%; height: 100%; object-fit: cover; }
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,10,30,0.6) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            width: 100%;
+        }
+
+        .content {
+            text-align: center;
+            max-width: 700px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 150, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        h1 span { color: #0096FF; }
+        
+        .bank-note { 
+            background: rgba(0, 150, 255, 0.1); 
+            padding: 15px; 
+            border-radius: 15px; 
+            margin-bottom: 25px; 
+            border-left: 4px solid #0096FF;
+            font-size: 0.95rem;
+        }
+        
+        .btn-back {
+            text-decoration: none;
+            color: #0096FF;
+            border: 1px solid #0096FF;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-back:hover { background: #0096FF; color: white; box-shadow: 0 0 20px #0096FF; }
+
+        /* GALERÍA CORREGIDA */
+        .gallery-container {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 150, 255, 0.2);
+            text-align: center;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .gallery-image.active { opacity: 1; }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            transform: translateY(-50%);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .controls button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #0096FF;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            pointer-events: auto;
+            transition: 0.3s;
+        }
+
+        .controls button:hover { background: #0096FF; color: white; }
+
+        .dots { margin-top: 15px; }
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background-color: #0096FF;
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-bg-container">
+        <video autoplay muted loop playsinline>
+            <source src="video-inversion.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="wrapper">
+       <div class="content">
+    <h1>💰 Inversión <span>Segura</span></h1>
+    <p>
+        Transparencia total en cada movimiento. Tu capital trabaja en un entorno tecnológico de alta precisión 
+        con estrategias de riesgo controlado, auditoría constante y control total de tus fondos.
+    </p>
+
+    <ul style="list-style: none; padding: 0; margin: 15px 0;">
+        <li style="margin-bottom: 8px;"><i class="fas fa-shield-alt" style="color: #4CFF2E; margin-right: 10px;"></i> <strong>Blindaje:</strong> Estrategias de riesgo controlado para proteger tu base.</li>
+        <li style="margin-bottom: 8px;"><i class="fas fa-search-dollar" style="color: #4CFF2E; margin-right: 10px;"></i> <strong>Claridad:</strong> Todo es auditable; sin letras pequeñas.</li>
+        <li style="margin-bottom: 8px;"><i class="fas fa-wallet" style="color: #4CFF2E; margin-right: 10px;"></i> <strong>Control:</strong> Retiros rápidos y gestión total de tus fondos.</li>
+    </ul>
+    
+            <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
+        </div>
+
+        <div class="gallery-container">
+            <h2>Nuestra Transparencia</h2>
+            <div class="gallery">
+                <img src="inversion1.jpg" class="gallery-image active" alt="Inversión 1">
+                <img src="inversion2.jpg" class="gallery-image" alt="Inversión 2">
+                <img src="inversion3.jpg" class="gallery-image" alt="Inversión 3">
+                <img src="inversion4.jpg" class="gallery-image" alt="Inversión 4">
+                <img src="inversion5.jpg" class="gallery-image" alt="Inversión 5">
+                <img src="inversion6.jpg" class="gallery-image" alt="Inversión 6">
+                <img src="inversion7.jpg" class="gallery-image" alt="Inversión 7">
+                <img src="inversion8.jpg" class="gallery-image" alt="Inversión 8">
+                <img src="inversion9.jpg" class="gallery-image" alt="Inversión 9">
+                <img src="inversion10.jpg" class="gallery-image" alt="Inversión 10">
+            </div>
+            <div class="controls">
+                <button class="prev-btn">&#10094;</button>
+                <button class="next-btn">&#10095;</button>
+            </div>
+            <div class="dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+                <span class="dot" data-index="5"></span>
+                <span class="dot" data-index="6"></span>
+                <span class="dot" data-index="7"></span>
+                <span class="dot" data-index="8"></span>
+                <span class="dot" data-index="9"></span>
+                <span class="dot" data-index="10"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            nextImage();
+            resetTimer();
+        });
+
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            prevImage();
+            resetTimer();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                currentIndex = parseInt(e.target.getAttribute('data-index'));
+                showImage(currentIndex);
+                resetTimer();
+            });
+        });
+
+        let autoPlayInterval = setInterval(nextImage, 4000);
+
+        function resetTimer() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextImage, 4000);
+        }
+
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        galleryContainer.addEventListener('mouseleave', () => resetTimer());
+
+        showImage(currentIndex);
+    </script>
+</body>
+</html>
