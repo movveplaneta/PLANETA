@@ -25,6 +25,29 @@ body {
     top: 0 !important;
 }
 
+.language-dropdown {
+  display: none;
+  position: absolute;
+  background: #111;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.language-dropdown.show {
+  display: block;
+}
+
+.lang-option {
+  cursor: pointer;
+  padding: 8px 12px;
+  color: white;
+}
+
+.lang-option:hover {
+  background: #00ff99;
+  color: black;
+}
+
 /* ================= NAVBAR ================= */ 
 .navbar {
     position: fixed;
@@ -254,7 +277,7 @@ body {
   z-index: 0;
 
   /* 🔥 baja claridad del video */
- filter: brightness(0.35) contrast(1.15) saturate(1.1);
+  filter: brightness(0.45) contrast(1.1) saturate(0.9);
 }
 
 /* OVERLAY OSCURO ELEGANTE */
@@ -293,31 +316,21 @@ body {
   margin-bottom: 30px;
 }
 
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
+/* ================= SECCIONES ================= */ 
+.section {
+    padding: 70px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.btn-social {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid #4CFF2E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.45);
-  font-size: 22px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
 }
 
-.btn-social:hover {
-  transform: scale(1.15);
-  background: #4CFF2E;
-  color: #000;
+.section-title span {
+    color: #4CFF2E;
 }
 
 /* ================= BOTÓN DINÁMICO VERDE ================= */ 
@@ -362,6 +375,26 @@ body {
     0% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
     100% { transform: translateY(0); }
+}
+
+/* ================= SOCIALES ================= */ 
+.social-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-social {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #4CFF2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
 }
 
 /* ================= VIDEO BOX ================= */ 
@@ -611,4 +644,51 @@ footer span {
   display: flex;
   justify-content: center; /* centra horizontalmente */
   margin-top: 30px; /* opcional: espacio desde arriba */
+}
+
+/* Estilo del botón */
+.btn-verde {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #00c853, #b2ff59); /* degradado verde */
+  color: black; /* texto negro */
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-verde:hover {
+  background: linear-gradient(135deg, #b2ff59, #00c853); /* invertir degradado */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor centrado */
+.btn-container {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  margin-top: 20px; /* espacio opcional */
+}
+
+/* Estilo del botón */
+.btn-verde {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #00c853, #b2ff59); /* degradado verde */
+  color: black; /* texto negro */
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-verde:hover {
+  background: linear-gradient(135deg, #b2ff59, #00c853); /* invertir degradado */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
