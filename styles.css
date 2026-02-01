@@ -364,34 +364,6 @@ body {
     100% { transform: translateY(0); }
 }
 
-/* ================= SOCIALES ================= */ 
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-.btn-social {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid #4CFF2E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.45);
-  font-size: 22px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-social:hover {
-  transform: scale(1.15);
-  background: #4CFF2E;
-  color: #000;
-}
-
 /* ================= VIDEO BOX ================= */ 
 .video-box {
     max-width: 800px;
@@ -639,24 +611,4 @@ footer span {
   display: flex;
   justify-content: center; /* centra horizontalmente */
   margin-top: 30px; /* opcional: espacio desde arriba */
-}
-
-/* Estilo del botón */
-.btn-verde {
-  display: inline-block;
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #00c853, #b2ff59); /* degradado verde */
-  color: black; /* texto negro */
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.btn-verde:hover {
-  background: linear-gradient(135deg, #b2ff59, #00c853); /* invertir degradado */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
