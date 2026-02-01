@@ -37,17 +37,6 @@ body {
   display: block;
 }
 
-.lang-option {
-  cursor: pointer;
-  padding: 8px 12px;
-  color: white;
-}
-
-.lang-option:hover {
-  background: #00ff99;
-  color: black;
-}
-
 /* ================= NAVBAR ================= */ 
 .navbar {
     position: fixed;
@@ -317,31 +306,6 @@ body {
 }
 
 /* ================= BOTÓN DINÁMICO VERDE ================= */ 
-.btn-verde {
-    background: linear-gradient(135deg, #4CFF2E, #00FFA5);
-    color: #000000;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 18px 50px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 8px 20px rgba(76, 255, 46, 0.4);
-    animation: floatBtn 3s ease-in-out infinite;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.btn-verde:hover {
-    transform: translateY(-5px) scale(1.05) rotate(-1deg);
-    box-shadow: 0 12px 25px rgba(76, 255, 46, 0.6);
-}
-
 .btn-verde i {
     animation: iconBounce 1s infinite alternate;
 }
