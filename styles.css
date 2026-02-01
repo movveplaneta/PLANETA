@@ -683,23 +683,3 @@ footer span {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-
-/* Estilo del botón */
-.btn-verde {
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #00c853, #b2ff59); /* degradado verde */
-  color: black; /* texto negro */
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.btn-verde:hover {
-  background: linear-gradient(135deg, #b2ff59, #00c853); /* invertir degradado */
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
