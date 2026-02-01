@@ -277,7 +277,7 @@ body {
   z-index: 0;
 
   /* 🔥 baja claridad del video */
-  filter: brightness(0.45) contrast(1.1) saturate(0.9);
+ filter: brightness(0.35) contrast(1.15) saturate(1.1);
 }
 
 /* OVERLAY OSCURO ELEGANTE */
@@ -316,21 +316,31 @@ body {
   margin-bottom: 30px;
 }
 
-/* ================= SECCIONES ================= */ 
-.section {
-    padding: 70px 20px;
-    text-align: center;
-    max-width: 1200px;
-    margin: auto;
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
 }
 
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+.btn-social {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #4CFF2E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.45);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.section-title span {
-    color: #4CFF2E;
+.btn-social:hover {
+  transform: scale(1.15);
+  background: #4CFF2E;
+  color: #000;
 }
 
 /* ================= BOTÓN DINÁMICO VERDE ================= */ 
@@ -379,22 +389,30 @@ body {
 
 /* ================= SOCIALES ================= */ 
 .social-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
 }
 
 .btn-social {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid #4CFF2E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: rgba(0,0,0,0.4);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #4CFF2E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.45);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-social:hover {
+  transform: scale(1.15);
+  background: #4CFF2E;
+  color: #000;
 }
 
 /* ================= VIDEO BOX ================= */ 
