@@ -292,7 +292,7 @@ display: none !important;
 
 /* ================= BOTÓN DINÁMICO VERDE ================= */ 
 .btn-verde i {
-    animation: iconBounce 1s infinite alternate;
+    animation: floatBtn 3s ease-in-out infinite;
 }
 
 /* FLOTE SUAVE */
