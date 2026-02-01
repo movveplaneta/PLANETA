@@ -25,29 +25,6 @@ body {
     top: 0 !important;
 }
 
-.language-dropdown {
-  display: none;
-  position: absolute;
-  background: #111;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.language-dropdown.show {
-  display: block;
-}
-
-.lang-option {
-  cursor: pointer;
-  padding: 8px 12px;
-  color: white;
-}
-
-.lang-option:hover {
-  background: #00ff99;
-  color: black;
-}
-
 /* ================= NAVBAR ================= */ 
 .navbar {
     position: fixed;
