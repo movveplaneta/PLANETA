@@ -259,8 +259,8 @@ body {
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;              /* ocupa toda la pantalla */
-  min-height: 600px;          /* evita deformación en móviles */
+  height: 60vh;              /* ocupa toda la pantalla */
+  min-height: 400px;          /* evita deformación en móviles */
   overflow: hidden;
   text-align: center;
 }
