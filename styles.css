@@ -11,6 +11,7 @@ body {
     color: #fff;
     overflow-x: hidden;
     padding-top: 70px;
+    top: 0 !important;
 }
 
 /* ================= OCULTAR GOOGLE TRANSLATE ================= */ 
@@ -18,23 +19,7 @@ body {
 .goog-te-gadget,
 .goog-te-combo,
 .skiptranslate {
-    display: none !important;
-}
-
-body {
-    top: 0 !important;
-}
-
-.language-dropdown {
-  display: none;
-  position: absolute;
-  background: #111;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.language-dropdown.show {
-  display: block;
+display: none !important;
 }
 
 /* ================= NAVBAR ================= */ 
