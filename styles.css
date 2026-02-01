@@ -684,13 +684,6 @@ footer span {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Contenedor centrado */
-.btn-container {
-  display: flex;
-  justify-content: center; /* centra horizontalmente */
-  margin-top: 20px; /* espacio opcional */
-}
-
 /* Estilo del botón */
 .btn-verde {
   padding: 12px 25px;
