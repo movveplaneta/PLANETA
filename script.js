@@ -134,59 +134,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const track = document.getElementById("proTrack");
+const cards = document.querySelectorAll(".video-card");
 const modal = document.getElementById("videoModal");
-const modalVideo = document.getElementById("modalVideo");
-const closeBtn = document.querySelector(".close-btn");
+const video = document.getElementById("modalVideo");
+const close = document.querySelector(".close");
 
-let isDragging = false;
-let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-
-/* 🔁 Duplicar para loop */
-track.innerHTML += track.innerHTML;
-
-/* 📱 TOUCH EVENTS */
-track.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-  isDragging = false;
-});
-
-track.addEventListener("touchmove", e => {
-  const moveX = e.touches[0].clientX;
-  const diff = moveX - startX;
-
-  if (Math.abs(diff) > 10) {
-    isDragging = true;
-    track.style.transform = `translateX(${prevTranslate + diff}px)`;
-  }
-});
-
-track.addEventListener("touchend", e => {
-  if (isDragging) {
-    prevTranslate += e.changedTouches[0].clientX - startX;
-  }
-});
-
-/* 🖱️ CLICK / TAP PARA ABRIR VIDEO */
-document.querySelectorAll(".pro-card").forEach(card => {
+cards.forEach(card => {
   card.addEventListener("click", () => {
-    if (isDragging) return; // ❌ si estaba deslizando, no abrir
-
-    const videoSrc = card.dataset.video;
-    modalVideo.src = videoSrc;
+    video.src = card.dataset.video;
     modal.style.display = "flex";
-    modalVideo.play();
+    video.play();
   });
 });
 
-/* ❌ CERRAR MODAL */
-closeBtn.onclick = closeModal;
-modal.onclick = e => e.target === modal && closeModal();
-
-function closeModal() {
-  modalVideo.pause();
-  modalVideo.src = "";
+close.onclick = () => {
+  video.pause();
+  video.src = "";
   modal.style.display = "none";
-}
+};
+
+modal.onclick = e => {
+  if (e.target === modal) close.click();
+};
+
