@@ -133,3 +133,31 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = currentScrollY;
   });
 });
+
+const slides = document.querySelectorAll('.video-slide');
+const modal = document.getElementById('videoModal');
+const modalVideo = document.getElementById('modalVideo');
+const closeBtn = modal.querySelector('.close-btn');
+
+slides.forEach(slide => {
+  slide.addEventListener('click', () => {
+    const videoSrc = slide.getAttribute('data-video');
+    modalVideo.src = videoSrc;
+    modal.style.display = 'flex';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+  modalVideo.pause();
+  modalVideo.src = "";
+});
+
+// Cerrar modal haciendo click afuera del video
+modal.addEventListener('click', e => {
+  if(e.target === modal){
+    modal.style.display = 'none';
+    modalVideo.pause();
+    modalVideo.src = "";
+  }
+});
