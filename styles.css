@@ -397,8 +397,9 @@ display: none !important;
 
 /* Card */
 .video-card {
-  min-width: 300px;
-  height: 180px;
+   min-width: 320px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   position: relative;
   border-radius: 18px;
   overflow: hidden;
@@ -439,6 +440,13 @@ display: none !important;
 
 .video-card:hover .play {
   background: rgba(0,0,0,.6);
+}
+
+@media (max-width: 768px) {
+  .video-card {
+    min-width: 260px;
+    height: 150px;
+  }
 }
 
 /* ================= GALERÍA FOTOS ================= */ 
