@@ -292,6 +292,23 @@ display: none !important;
   margin-bottom: 30px;
 }
 
+/* ================= SECCIONES ================= */ 
+.section {
+    padding: 70px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.section-title span {
+    color: #4CFF2E;
+}
+
 /* ================= BOTÓN DINÁMICO VERDE ================= */ 
 .btn-verde i {
     animation: floatBtn 3s ease-in-out infinite;
