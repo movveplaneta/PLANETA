@@ -250,13 +250,15 @@ function showPopunder(e) {
 <footer>
 &copy; 2026 <span>MOVVE PLANETA</span>. Todos los derechos reservados.
 </footer>
+  
 <!-- MODAL -->
-<div class="modal" id="mediaModal" onclick="closeMedia()">
-<div class="modal-box" onclick="event.stopPropagation()">
-<button class="close-btn" onclick="closeMedia()">✕</button>
-<div id="modalContent"></div>
+<div class="modal" id="videoModal">
+  <div class="modal-box">
+    <button class="close-btn">&times;</button>
+    <video id="modalVideo" controls autoplay loop muted playsinline></video>
+  </div>
 </div>
-</div>
+  
 <!-- JS -->
 <script src="script.js"></script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
