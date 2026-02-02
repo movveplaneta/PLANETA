@@ -135,24 +135,53 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const track = document.getElementById("proTrack");
-const cards = document.querySelectorAll(".pro-card");
 const modal = document.getElementById("videoModal");
 const modalVideo = document.getElementById("modalVideo");
 const closeBtn = document.querySelector(".close-btn");
 
-/* 🔁 Loop infinito real */
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+
+/* 🔁 Duplicar para loop */
 track.innerHTML += track.innerHTML;
 
-/* 🎥 Abrir video SOLO al hacer click */
-cards.forEach(card => {
+/* 📱 TOUCH EVENTS */
+track.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+  isDragging = false;
+});
+
+track.addEventListener("touchmove", e => {
+  const moveX = e.touches[0].clientX;
+  const diff = moveX - startX;
+
+  if (Math.abs(diff) > 10) {
+    isDragging = true;
+    track.style.transform = `translateX(${prevTranslate + diff}px)`;
+  }
+});
+
+track.addEventListener("touchend", e => {
+  if (isDragging) {
+    prevTranslate += e.changedTouches[0].clientX - startX;
+  }
+});
+
+/* 🖱️ CLICK / TAP PARA ABRIR VIDEO */
+document.querySelectorAll(".pro-card").forEach(card => {
   card.addEventListener("click", () => {
-    modalVideo.src = card.dataset.video;
+    if (isDragging) return; // ❌ si estaba deslizando, no abrir
+
+    const videoSrc = card.dataset.video;
+    modalVideo.src = videoSrc;
     modal.style.display = "flex";
     modalVideo.play();
   });
 });
 
-/* ❌ Cerrar modal */
+/* ❌ CERRAR MODAL */
 closeBtn.onclick = closeModal;
 modal.onclick = e => e.target === modal && closeModal();
 
@@ -161,15 +190,3 @@ function closeModal() {
   modalVideo.src = "";
   modal.style.display = "none";
 }
-
-/* 📱 Swipe móvil */
-let startX = 0;
-track.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-track.addEventListener("touchmove", e => {
-  let moveX = e.touches[0].clientX - startX;
-  track.style.transform = `translateX(${moveX}px)`;
-});
-
-
