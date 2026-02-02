@@ -134,30 +134,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const slides = document.querySelectorAll('.video-slide');
-const modal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-const closeBtn = modal.querySelector('.close-btn');
+const track = document.getElementById("proTrack");
+const cards = document.querySelectorAll(".pro-card");
+const modal = document.getElementById("videoModal");
+const modalVideo = document.getElementById("modalVideo");
+const closeBtn = document.querySelector(".close-btn");
 
-slides.forEach(slide => {
-  slide.addEventListener('click', () => {
-    const videoSrc = slide.getAttribute('data-video');
-    modalVideo.src = videoSrc;
-    modal.style.display = 'flex';
+/* 🔁 Loop infinito real */
+track.innerHTML += track.innerHTML;
+
+/* 🎥 Abrir video SOLO al hacer click */
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    modalVideo.src = card.dataset.video;
+    modal.style.display = "flex";
+    modalVideo.play();
   });
 });
 
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
+/* ❌ Cerrar modal */
+closeBtn.onclick = closeModal;
+modal.onclick = e => e.target === modal && closeModal();
+
+function closeModal() {
   modalVideo.pause();
   modalVideo.src = "";
+  modal.style.display = "none";
+}
+
+/* 📱 Swipe móvil */
+let startX = 0;
+track.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+track.addEventListener("touchmove", e => {
+  let moveX = e.touches[0].clientX - startX;
+  track.style.transform = `translateX(${moveX}px)`;
 });
 
-// Cerrar modal haciendo click afuera del video
-modal.addEventListener('click', e => {
-  if(e.target === modal){
-    modal.style.display = 'none';
-    modalVideo.pause();
-    modalVideo.src = "";
-  }
-});
+
