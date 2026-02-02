@@ -376,11 +376,22 @@ display: none !important;
 
 .video-card {
     cursor: pointer;
+
+    /* 🔥 AGREGADO */
+    border: 2px solid #4CFF2E;
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .video-card img {
     width: 100%;
     border-radius: 15px;
+}
+
+/* 🔥 ANIMACIÓN AL PASAR EL CLICK */
+.video-card:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 20px rgba(76, 255, 46, 0.6);
 }
 
 /* ================= GALERÍA FOTOS ================= */ 
