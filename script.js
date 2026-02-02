@@ -135,25 +135,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const cards = document.querySelectorAll(".video-card");
-const modal = document.getElementById("videoModal");
-const video = document.getElementById("modalVideo");
-const close = document.querySelector(".close");
 
 cards.forEach(card => {
+  const video = card.querySelector("video");
+  const poster = card.querySelector(".poster");
+  const play = card.querySelector(".play");
+
   card.addEventListener("click", () => {
-    video.src = card.dataset.video;
-    modal.style.display = "flex";
+
+    // Pausar otros videos
+    document.querySelectorAll(".video-card video").forEach(v => {
+      if (v !== video) {
+        v.pause();
+        v.currentTime = 0;
+        v.style.display = "none";
+        v.closest(".video-card").querySelector(".poster").style.display = "block";
+        v.closest(".video-card").querySelector(".play").style.display = "flex";
+      }
+    });
+
+    // Reproducir este video
+    poster.style.display = "none";
+    play.style.display = "none";
+    video.style.display = "block";
     video.play();
   });
 });
-
-close.onclick = () => {
-  video.pause();
-  video.src = "";
-  modal.style.display = "none";
-};
-
-modal.onclick = e => {
-  if (e.target === modal) close.click();
-};
-
