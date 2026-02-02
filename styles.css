@@ -339,7 +339,7 @@ display: none !important;
 
 /* ================= VIDEO BOX ================= */ 
 .video-box {
-    max-width: 800px;
+    max-width: 500px;
     margin: 30px auto;
 }
 
