@@ -144,50 +144,33 @@
 <!-- GALERÍA VIDEOS -->
 <section class="section" id="galeria-videos">
 <h2 class="section-title">Tutoriales <span>MOVVE</span></h2>
-  
-  <div class="carousel">
-    <div class="carousel-track">
-
-<div class="video-card">
-        <img src="thumb1.jpg" class="poster">
-  <video src="video1.mp4"></video>
-      <span class="play">▶</span>
+<div class="video-gallery">
+<div class="video-card" onclick="openMedia('video1.mp4','video')">
+<img alt="Crear Cartera" src="thumb1.jpg"/>
 <h3>Crear Cartera</h3>
 </div>
-<div class="video-card">
-        <img src="thumb2.jpg" class="poster">
-  <video src="video2.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video2.mp4','video')">
+<img alt="Movve Wallet" src="thumb2.jpg"/>
 <h3>Movve Wallet</h3>
 </div>
-<div class="video-card">
-        <img src="thumb3.jpg" class="poster">
-  <video src="video3.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video3.mp4','video')">
+<img alt="Invertir" src="thumb3.jpg"/>
 <h3>Invertir</h3>
 </div>
-<div class="video-card">
-        <img src="thumb4.jpg" class="poster">
-  <video src="video4.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video4.mp4','video')">
+<img alt="Reinvertir" src="thumb4.jpg"/>
 <h3>Reinvertir</h3>
 </div>
-<div class="video-card">
-        <img src="thumb5.jpg" class="poster">
-  <video src="video5.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video5.mp4','video')">
+<img alt="Retirar" src="thumb5.jpg"/>
 <h3>Retirar</h3>
 </div>
-<div class="video-card">
-        <img src="thumb6.jpg" class="poster">
-  <video src="video6.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video6.mp4','video')">
+<img alt="Binario" src="thumb6.jpg"/>
 <h3>Binario</h3>
 </div>
-<div class="video-card">
-        <img src="thumb7.jpg" class="poster">
-  <video src="video7.mp4"></video>
-  <span class="play">▶</span>
+<div class="video-card" onclick="openMedia('video7.mp4','video')">
+<img alt="Activar Binario" src="thumb7.jpg"/>
 <h3>Activar Binario</h3>
 </div>
 </div>
@@ -269,11 +252,14 @@ function showPopunder(e) {
 </footer>
   
 <!-- MODAL -->
-<div class="video-modal" id="videoModal">
-  <button class="close">✕</button>
-  <video id="modalVideo" controls></video>
+<!-- MODAL -->
+<div class="modal" id="mediaModal" onclick="closeMedia()">
+<div class="modal-box" onclick="event.stopPropagation()">
+<button class="close-btn" onclick="closeMedia()">✕</button>
+<div id="modalContent"></div>
 </div>
-  
+</div>
+
 <!-- JS -->
 <script src="videos.js"></script>
 <script src="script.js"></script>
