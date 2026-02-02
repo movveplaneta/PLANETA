@@ -133,31 +133,3 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = currentScrollY;
   });
 });
-
-const cards = document.querySelectorAll(".video-card");
-
-cards.forEach(card => {
-  const video = card.querySelector("video");
-  const poster = card.querySelector(".poster");
-  const play = card.querySelector(".play");
-
-  card.addEventListener("click", () => {
-
-    // Pausar otros videos
-    document.querySelectorAll(".video-card video").forEach(v => {
-      if (v !== video) {
-        v.pause();
-        v.currentTime = 0;
-        v.style.display = "none";
-        v.closest(".video-card").querySelector(".poster").style.display = "block";
-        v.closest(".video-card").querySelector(".play").style.display = "flex";
-      }
-    });
-
-    // Reproducir este video
-    poster.style.display = "none";
-    play.style.display = "none";
-    video.style.display = "block";
-    video.play();
-  });
-});
