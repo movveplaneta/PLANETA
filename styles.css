@@ -368,38 +368,67 @@ display: none !important;
 }
 
 /* ================= GALERÍA VIDEOS ================= */ 
-.video-gallery {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 20px;
-    scroll-snap-type: x mandatory;
+/* Títulos estilo MOVVE */
+#galeria-videos .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: #fff;
 }
 
-.video-card {
+#galeria-videos .section-title span {
+    color: #4CFF2E; /* segundo color */
+}
+
+/* Carrusel horizontal */
+.video-carousel {
+    display: flex;
+    gap: 25px;
+    overflow: hidden;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    animation: scrollCarousel 20s linear infinite;
+}
+
+.video-slide {
+    min-width: 300px;
     flex: 0 0 auto;
-    width: 280px;
     border-radius: 20px;
     overflow: hidden;
     background: rgba(8, 12, 18, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(76, 255, 46, 0.15);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.6),
-                inset 0 0 25px rgba(255,255,255,0.02);
-    scroll-snap-align: start;
-    cursor: pointer;
-    transition: transform 0.4s ease;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(76, 255, 46, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02);
+    transform: translateY(0);
+    transition: transform 0.5s ease;
 }
 
-.video-card img {
+.video-slide video {
     width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
-.video-card:hover {
-    transform: translateY(-12px) scale(1.05);
+/* Animación flotante */
+.video-slide:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.7), 0 0 25px rgba(76,255,46,0.3);
+}
+
+/* Animación automática tipo carrusel */
+@keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* ajusta según la cantidad de videos */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .video-slide {
+        min-width: 220px;
+    }
+    #galeria-videos .section-title {
+        font-size: 2rem;
+    }
 }
 
 /* ================= GALERÍA FOTOS ================= */ 
