@@ -145,35 +145,42 @@
 <section class="section" id="galeria-videos">
 <h2 class="section-title">Tutoriales <span>MOVVE</span></h2>
   
- <div class="pro-carousel">
-    <div class="pro-track" id="proTrack">
+  <div class="carousel">
+    <div class="carousel-track">
 
-    <div class="pro-card" data-video="video1.mp4">
+    <div class="video-card" data-video="video1.mp4">
         <img src="thumb1.jpg">
+      <span class="play">▶</span>
 <h3>Crear Cartera</h3>
 </div>
-<div class="pro-card" data-video="video2.mp4">
+<div class="video-card" data-video="video2.mp4">
         <img src="thumb2.jpg">
+  <span class="play">▶</span>
 <h3>Movve Wallet</h3>
 </div>
-<div class="pro-card" data-video="video3.mp4">
+<div class="video-card" data-video="video3.mp4">
         <img src="thumb3.jpg">
+  <span class="play">▶</span>
 <h3>Invertir</h3>
 </div>
-<div class="pro-card" data-video="video4.mp4">
+<div class="video-card" data-video="video4.mp4">
         <img src="thumb4.jpg">
+  <span class="play">▶</span>
 <h3>Reinvertir</h3>
 </div>
-<div class="pro-card" data-video="video5.mp4">
+<div class="video-card" data-video="video5.mp4">
         <img src="thumb5.jpg">
+  <span class="play">▶</span>
 <h3>Retirar</h3>
 </div>
-<div class="pro-card" data-video="video6.mp4">
+<div class="video-card" data-video="video6.mp4">
         <img src="thumb6.jpg">
+  <span class="play">▶</span>
 <h3>Binario</h3>
 </div>
-<div class="pro-card" data-video="video7.mp4">
+<div class="video-card" data-video="video7.mp4">
         <img src="thumb7.jpg">
+  <span class="play">▶</span>
 <h3>Activar Binario</h3>
 </div>
 </div>
@@ -255,11 +262,9 @@ function showPopunder(e) {
 </footer>
   
 <!-- MODAL -->
-<div class="modal" id="videoModal">
-  <div class="modal-box">
-    <button class="close-btn">&times;</button>
-    <video id="modalVideo" controls playsinline></video>
-  </div>
+<div class="video-modal" id="videoModal">
+  <button class="close">✕</button>
+  <video id="modalVideo" controls></video>
 </div>
   
 <!-- JS -->
