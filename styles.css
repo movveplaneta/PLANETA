@@ -277,7 +277,9 @@ display: none !important;
 .hero-content h1 {
   font-size: 3.5rem;
   font-weight: 800;
-  margin-bottom: 12px;
+ margin-bottom: 15px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .hero-content h1 span {
