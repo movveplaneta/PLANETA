@@ -252,12 +252,33 @@ function showPopunder(e) {
 </footer>
   
 <!-- MODAL -->
-<div class="modal" id="mediaModal" onclick="closeMedia()">
-<div class="modal-box" onclick="event.stopPropagation()">
-<button class="close-btn" onclick="closeMedia()">✕</button>
-<div id="modalContent"></div>
-</div>
-</div>
+<div id="mediaModal" onclick="closeMedia()">
+    <span class="modal-close">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+
+  <script>
+    function openMedia(src, type) {
+      const modal = document.getElementById('mediaModal');
+      const content = document.getElementById('modalContent');
+
+      document.body.style.overflow = 'hidden';
+      content.innerHTML = '';
+
+      if (type === 'img') {
+        const img = document.createElement('img');
+        img.src = src;
+        content.appendChild(img);
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeMedia() {
+      document.getElementById('mediaModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
 
 <!-- JS -->
 <script src="videos.js"></script>
