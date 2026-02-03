@@ -407,40 +407,55 @@ display: none !important;
     cursor: pointer;
 }
 
-/* ================= MODAL ================= */ 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
+/* ==================== MODAL ==================== */
+#mediaModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-.modal-box {
-    background: #000;
-    padding: 20px;
-    max-width: 900px;
-    width: 90%;
-    border-radius: 15px;
-    position: relative;
+#mediaModal.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
+#modalContent img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 25px;
+  border: 2px solid rgba(76,255,46,0.5);
+  box-shadow: 0 0 35px rgba(76,255,46,0.6);
+  animation: zoomIn 0.6s ease;
 }
 
-.modal-box video, .modal-box img {
-    max-height: 80vh;
-    object-fit: contain;
+/* Botón cerrar */
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  font-size: 38px;
+  color: #b2ff59;
+  cursor: pointer;
+  text-shadow: 0 0 15px rgba(76,255,46,0.8);
+}
+
+/* Animación */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* ================= FOOTER ================= */ 
