@@ -1192,4 +1192,136 @@ body {
 
 .btn-social:hover i {
     transform: scale(1.2);
+
+}
+
+/* ================================================================
+   MODAL DE BIENVENIDA PROFESIONAL - ESTILO MOVVE WALLET
+   ================================================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* Capa oscura traslúcida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(15px); /* Desenfoque intenso y moderno */
+    -webkit-backdrop-filter: blur(15px);
+    transition: opacity 0.5s ease;
+}
+
+.modal-content {
+    background: rgba(15, 20, 28, 0.85); /* Fondo azul oscuro profundo con transparencia */
+    padding: 50px 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 255, 136, 0.3); /* Borde verde neón sutil */
+    text-align: center;
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 
+                0 0 20px rgba(0, 255, 136, 0.1);
+    animation: modalAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animación de entrada suave */
+@keyframes modalAppear {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- Títulos y Textos --- */
+.modal-title {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.modal-title span {
+    color: #00ff88; /* Verde neón característico */
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.modal-text {
+    color: #a0a8b3;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 35px;
+}
+
+/* --- Botón de Cierre (X) --- */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 50, 50, 0.2);
+    color: #ff4d4d;
+    transform: rotate(90deg);
+}
+
+/* --- Contenedor de Botones --- */
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 16px 25px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* Botón Registrarme (Principal) */
+.btn-primary {
+    background: #00ff88;
+    color: #010a01;
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+}
+
+.btn-primary:hover {
+    background: #05ffa1;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 255, 136, 0.4);
+}
+
+/* Botón Aprender (Secundario) */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
