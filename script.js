@@ -123,4 +123,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se ejecuta solo cada 3500ms (3.5 segundos)
         setInterval(autoMove, 3500);
     }
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('welcomeModal');
+    const btnAprende = document.getElementById('btnAprende');
+    const btnRegistro = document.getElementById('btnRegistro');
+    const closeBtn = document.getElementById('closeModal');
+
+    // ACCIÓN 1: "Aprende sobre Movve Wallet" 
+    // Cierra el modal y permite ver la página principal
+    btnAprende.addEventListener('click', (e) => {
+        // Si usas un enlace ancla (como #wallet-info), el navegador se moverá allí automáticamente
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 500); // Espera a que termine la animación de transparencia
+    });
+
+    // ACCIÓN 2: "Registrarme ahora" 
+    // Abre el enlace que tú decidas (aquí pones el link de tu formulario)
+    btnRegistro.addEventListener('click', () => {
+        const urlRegistro = 'https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8'; // <--- CAMBIA ESTO
+        window.open(urlRegistro, '_blank'); // Lo abre en una pestaña nueva
+    });
+
+    // LA "X" para cerrar
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 });
