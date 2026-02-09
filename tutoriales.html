@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutoriales | MOVVE WALLET</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <a href="index.html" class="btn-verde">← Volver</a>
+</nav>
+
+<!-- ================= SECCIÓN TUTORIALES ================= -->
+<section class="section fade-up" id="tutoriales">
+    <h2 class="section-title">Tutoriales <span>MOVVE</span></h2>
+
+    <div class="video-gallery">
+        <!-- Video Cards -->
+        <div class="video-card fade-up" onclick="openVideo('video1.mp4')">
+            <img src="thumb1.jpg" alt="Video Paso 1">
+            <h3>🪪 Paso 1: Crear Cartera</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video2.mp4')">
+            <img src="thumb2.jpg" alt="Video Paso 2">
+            <h3>📱 Paso 2: Movve Wallet</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video3.mp4')">
+            <img src="thumb3.jpg" alt="Video Paso 3">
+            <h3>💰 Paso 3: Invertir</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video4.mp4')">
+            <img src="thumb4.jpg" alt="Video Paso 4">
+            <h3>🔁 Paso 4: Reinvertir</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video5.mp4')">
+            <img src="thumb5.jpg" alt="Video Paso 5">
+            <h3>🏦 Paso 5: Retirar</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video6.mp4')">
+            <img src="thumb6.jpg" alt="Video Paso 6">
+            <h3>📊 Paso 6: Binario</h3>
+        </div>
+
+        <div class="video-card fade-up" onclick="openVideo('video7.mp4')">
+            <img src="thumb7.jpg" alt="Video Paso 7">
+            <h3>⚡ Paso 7: Activar Binario</h3>
+        </div>
+    </div>
+</section>
+
+<!-- ================= VIDEO MODAL ================= -->
+<div id="videoModal" class="video-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <span class="close" onclick="closeVideo()">✖</span>
+        <video id="modalVideo" controls></video>
+    </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script src="script.js"></script>
+
+</body>
+</html>

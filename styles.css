@@ -1,0 +1,1195 @@
+/* ================= VARIABLES GLOBALES ================= */
+:root {
+    --primary-green: #00ff88;
+    --accent-blue: #38bdf8;
+    --accent-purple: #a855f7;
+    --dark-bg: #050810;
+    --glass: rgba(15, 23, 42, 0.7);
+    --text-white: #f8fafc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================= RESET Y BASE ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+#web3Particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* ================= NAVBAR PROFESIONAL ================= */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 8, 16, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    height: 45px;
+    filter: drop-shadow(0 0 5px var(--primary-green));
+}
+
+.nav-title {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.nav-title span { color: var(--primary-green); }
+
+.section-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.section-menu a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.section-menu a:hover {
+    color: var(--primary-green);
+}
+
+.menu-btn {
+    background: none;
+    border: 1px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ================= HERO SECTION (OPTIMIZADA) ================= */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    /* Filtro adicional de oscuridad directo al video */
+    filter: brightness(0.4) contrast(1.1); 
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Capa doble: Oscuridad uniforme + Degradado hacia el fondo */
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 8, 16, 0.7) 0%,   /* Oscuro arriba */
+        rgba(5, 8, 16, 0.5) 50%,  /* Un poco más claro al centro */
+        rgba(5, 8, 16, 0.9) 100%  /* Muy oscuro abajo para los botones */
+    );
+    z-index: -1;
+}
+
+/.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #ffffff; /* Texto principal Blanco */
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    letter-spacing: -1px;
+}
+
+/* Palabra resaltada en Verde */
+.hero-content h1 span {
+    color: var(--primary-green);
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.6), 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    /* Degradado de Blanco a Verde muy suave para el párrafo */
+    background: linear-gradient(to right, #ffffff, var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 35px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+/* Ajuste adicional para que el título se vea imponente en móvil */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* ================= SECCIONES Y CARDS ================= */
+.section {
+    padding: 100px 8%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title span { color: var(--primary-green); }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card-link { text-decoration: none; color: inherit; }
+
+.card {
+    background: var(--glass);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Glow Effects */
+.card-glow-green:hover { border-color: var(--primary-green); box-shadow: 0 0 30px rgba(0, 255, 136, 0.2); }
+.card-glow-blue:hover { border-color: var(--accent-blue); box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); }
+.card-glow-purple:hover { border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(168, 85, 247, 0.2); }
+
+/* ================= GALERÍA VERTICAL ORIGINAL ================= */
+.album {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.gallery-image {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.gallery-image.active { opacity: 1; }
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ================= BOTONES Y FOOTER ================= */
+.btn-verde {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--primary-green);
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+    transition: var(--transition);
+}
+
+.btn-verde:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.5);
+}
+
+footer {
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #64748b;
+}
+
+footer span { color: var(--primary-green); }
+
+/* ================= ANIMACIONES ================= */
+.fade-up {
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .section-menu { display: none; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content p { font-size: 1.1rem; }
+}
+
+/* ================= CONFIGURACIÓN GENERAL ================= */
+:root {
+    --primary-green: #00ff88;
+    --dark-bg: #0f172a;
+    --card-bg: #1e293b;
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    padding: 20px 5%;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.btn-verde {
+    text-decoration: none;
+    color: var(--primary-green);
+    font-weight: 600;
+    border: 1px solid var(--primary-green);
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.btn-verde:hover {
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+/* ================= SECCIÓN TUTORIALES ================= */
+.section {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.section-title span {
+    color: var(--primary-green);
+}
+
+/* ================= VIDEO GALLERY (GRID) ================= */
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.video-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.video-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-green);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.video-card:hover img {
+    opacity: 1;
+}
+
+.video-card h3 {
+    padding: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+    background: var(--card-bg);
+}
+
+/* ================= MODAL DE VIDEO ================= */
+.video-modal {
+    display: none; /* Se activa con JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-content video {
+    width: 60%;
+    display: block;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* ================= ANIMACIONES ================= */
+.fade-up {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= VARIABLES Y RESET ================= */
+:root {
+    --primary-green: #00ff88;
+    --dark-bg: #0f172a;
+    --card-bg: #1e293b;
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    padding: 20px 5%;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ================= SECCIONES ================= */
+.section {
+    padding: 40px 5%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.section-title span {
+    color: var(--primary-green);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+/* ================= CONTENEDOR DE VIDEO ================= */
+.video-box {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-box video {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+/* ================= BOTONES ================= */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.btn-verde {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: transparent;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-verde:hover {
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
+    transform: scale(1.05);
+}
+
+/* Estilo específico para el botón de Registro (CTA) */
+#registro .btn-verde {
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    font-size: 1.3rem;
+}
+
+#registro .btn-verde:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 35px rgba(0, 255, 136, 0.6);
+}
+
+/* ================= FOOTER ================= */
+footer {
+    margin-top: auto;
+    padding: 40px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+footer span {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* ================= ANIMACIONES ================= */
+.fade-up {
+    animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    .section-title { font-size: 1.8rem; }
+    .btn-verde { width: 100%; justify-content: center; }
+}
+
+/* ================= VARIABLES Y RESET ================= */
+:root {
+    --primary-green: #00ff88;
+    --dark-bg: #0b0f1a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --text-white: #f8fafc;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* ================= FONDO DE VIDEO GALAXIA ================= */
+.video-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-bg-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(15, 23, 42, 0.4) 0%, rgba(11, 15, 26, 0.9) 100%);
+}
+
+/* ================= WRAPPER PRINCIPAL ================= */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 5%;
+    min-height: 100vh;
+    gap: 40px;
+}
+
+/* ================= CARD PRINCIPAL (GLASSMORPISM) ================= */
+.content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.content h1 span {
+    color: var(--primary-green);
+}
+
+.content p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+/* LISTA DE INFO */
+.info-list {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+    display: grid;
+    gap: 15px;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 20px;
+    border-radius: 12px;
+}
+
+.info-list i {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+}
+
+/* ================= GALERÍA DE COMUNIDAD ================= */
+.gallery-container {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.gallery-container h2 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+.gallery {
+    position: relative;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 1s ease;
+    transform: scale(1.05);
+}
+
+.gallery-image.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* CONTROLES */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.controls button {
+    background: var(--primary-green);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.controls button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.dots {
+    margin-top: 15px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--primary-green);
+    box-shadow: 0 0 10px var(--primary-green);
+}
+
+/* BOTÓN REGRESAR */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-white);
+    background: rgba(255,255,255,0.1);
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.btn-back:hover {
+    background: var(--primary-green);
+    color: var(--dark-bg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .gallery { height: 300px; }
+    .content h1 { font-size: 2rem; }
+}
+
+/* ================= VARIABLES Y BASE ================= */
+:root {
+    --primary-green: #00ff88;
+    --dark-bg: #0b0f1a;
+    --glass-bg: rgba(30, 41, 59, 0.75);
+    --text-white: #f8fafc;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* ================= FONDO DE VIDEO INMERSIVO ================= */
+.video-bg-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.video-bg-container video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(11, 15, 26, 0.5) 0%, rgba(11, 15, 26, 0.95) 100%);
+}
+
+/* ================= ESTRUCTURA ================= */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 5%;
+    min-height: 100vh;
+    gap: 50px;
+}
+
+/* ================= CARD DE CONTENIDO ================= */
+.content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px;
+    border-radius: 30px;
+    max-width: 850px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+.content h1 span {
+    color: var(--primary-green);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.content p {
+    font-size: 1.15rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+/* LISTA DE CRECIMIENTO */
+.info-list {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 40px;
+    display: grid;
+    gap: 20px;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 255, 136, 0.05);
+    padding: 18px 25px;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-green);
+}
+
+.info-list i {
+    color: var(--primary-green);
+    font-size: 1.4rem;
+}
+
+/* ================= GALERÍA DE CRECIMIENTO ================= */
+.gallery-container {
+    width: 100%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.gallery {
+    position: relative;
+    height: 500px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: var(--transition);
+    transform: scale(1.1);
+}
+
+.gallery-image.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ETIQUETA DE PAÍS */
+.gallery-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: var(--primary-green);
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    z-index: 10;
+    text-transform: uppercase;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    animation: slideIn 0.5s ease;
+}
+
+/* CONTROLES */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.controls button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid var(--primary-green);
+    width: 55px; height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.controls button:hover {
+    background: var(--primary-green);
+    color: #000;
+    box-shadow: 0 0 20px var(--primary-green);
+}
+
+.dot {
+    display: inline-block;
+    width: 12px; height: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background: var(--primary-green);
+    width: 30px;
+    border-radius: 10px;
+}
+
+/* BOTÓN REGRESAR */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-white);
+    background: rgba(255,255,255,0.1);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-back:hover {
+    background: white;
+    color: black;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .gallery { height: 350px; }
+    .content { padding: 30px; }
+    .content h1 { font-size: 2.2rem; }
+}
+
+/* ================= DROPDOWN DE IDIOMAS ================= */
+.menu-container {
+    position: relative;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
+    width: 180px;
+    padding: 10px 0;
+    display: none; /* Se activa con JS o cambiando a block */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+}
+
+/* Clase para mostrar el menú (se activa con JavaScript) */
+.language-dropdown.show {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+.lang-option {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-option:hover {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--primary-green);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= STACK SLIDER (PLAN EXPANSIÓN) ================= */
+/* ================= STACK SLIDER (PLAN EXPANSIÓN) ================= */
+.stack-slider {
+    position: relative;
+    width: 85%;
+    max-width: 350px; /* Formato teléfono vertical */
+    aspect-ratio: 9 / 16;
+    margin: 50px auto;
+    perspective: 1000px;
+}
+
+.stack-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden; /* Esto obliga a la imagen a no salirse de las esquinas */
+    background: #000;
+    border: 2px solid rgba(0, 255, 136, 0.4); /* Verde neón Movve */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+}
+
+.stack-card img {
+    width: 100%;
+    height: 100%;
+    /* 'cover' para que llene el borde, 'center' para que no se pierda el foco */
+    object-fit: cover; 
+    object-position: center;
+    display: block;
+}
+
+/* Efecto visual de la pila */
+.stack-card:nth-last-child(1) { transform: translateZ(0); z-index: 3; }
+.stack-card:nth-last-child(2) { transform: translateY(-15px) scale(0.94); z-index: 2; opacity: 0.7; }
+.stack-card:nth-last-child(3) { transform: translateY(-30px) scale(0.88); z-index: 1; opacity: 0.4; }
+
+/* Animación cuando la carta sale automáticamente */
+.stack-card.shift-out {
+        transform: translateX(150%) rotate(20deg) scale(0.8) !important;
+    opacity: 0;
+    z-index: 10;
+
+}
+
+/* ================= SOCIAL BUTTONS (HERO) ================= */
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-social {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03); /* Fondo casi invisible */
+    color: var(--text-white);
+    font-size: 1.4rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto elástico */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto Hover General */
+.btn-social:hover {
+    transform: translateY(-8px);
+    color: #000;
+    border-color: transparent;
+}
+
+/* Colores específicos y Brillos (Glow) al pasar el mouse */
+
+/* WhatsApp - Verde */
+.btn-social[href*="wa.link"]:hover, 
+.btn-social[href*="whatsapp"]:hover {
+    background: #25D366;
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+}
+
+/* Telegram - Azul claro */
+.btn-social[href*="t.me"]:hover {
+    background: #0088cc;
+    box-shadow: 0 0 25px rgba(0, 136, 204, 0.6);
+}
+
+/* Instagram - Degradado */
+.btn-social[href*="instagram"]:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 0 25px rgba(220, 39, 67, 0.6);
+}
+
+/* Animación de entrada para los iconos */
+.btn-social i {
+    transition: transform 0.3s ease;
+}
+
+.btn-social:hover i {
+    transform: scale(1.2);
+}

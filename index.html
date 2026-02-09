@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- META BÁSICO -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVVE PLANETA | Crecimiento</title>
+
+    <!-- SEO -->
+    <meta name="description" content="MOVVE PLANETA es una plataforma de crecimiento inteligente, inversión transparente y comunidad global con MOVVE Wallet.">
+    <meta name="keywords" content="Movve Wallet, inversión digital, crecimiento financiero, criptomonedas, comunidad Movve">
+    <meta name="author" content="MOVVE PLANETA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tudominio.com/">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="MOVVE PLANETA">
+    <meta property="og:description" content="Crecimiento inteligente e inversión transparente con MOVVE Wallet.">
+    <meta property="og:image" content="https://tudominio.com/preview.jpg">
+    <meta property="og:url" content="https://tudominio.com/">
+    <meta property="og:type" content="website">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="web3Particles"></canvas>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar" id="mainNav">
+    <div class="nav-left">
+        <img src="logo-movve-planeta.png" alt="Logo MOVVE" class="nav-logo" loading="lazy">
+        <div class="nav-title"><span>MOVVE</span> WALLET</div>
+    </div>
+
+    <ul class="section-menu">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#presentacion">Presentación</a></li>
+        <li><a href="#ecosistema">Ecosistema</a></li>
+        <li><a href="#plan-expansion">Expansión</a></li>
+        <li><a href="#galeria-fotos">Galería</a></li>
+    </ul>
+
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="language-dropdown" id="langMenu">
+            <div class="lang-option" onclick="execTranslate('es')">Español 🇪🇸</div>
+            <div class="lang-option" onclick="execTranslate('en')">English 🇺🇸</div>
+            <div class="lang-option" onclick="execTranslate('fr')">Français 🇫🇷</div>
+            <div class="lang-option" onclick="execTranslate('de')">Deutsch 🇩🇪</div>
+            <div class="lang-option" onclick="execTranslate('pt')">Português 🇧🇷</div>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero fade-up" id="hero">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata">
+        <source src="video-movve.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1><span>MOVVE</span> PLANETA</h1>
+        <p>Crecimiento inteligente e inversión transparente</p>
+
+        <div class="social-buttons">
+            <a class="btn-social" href="https://wa.link/sevo5c" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a class="btn-social" href="https://t.me/TuEnlaceTelegram" target="_blank" rel="noopener">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a class="btn-social" href="https://www.instagram.com/rolandy.oficial" target="_blank" rel="noopener">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ================= PRESENTACIÓN ================= -->
+<section class="section fade-up" id="presentacion">
+    <h2 class="section-title">Presentación <span>MOVVE</span></h2>
+    <div class="cards">
+        <a href="presentacion.html" class="card-link">
+            <div class="card card-glow-green fade-up">
+                <h3>🎥 Que es Movve Wallet</h3>
+                <p>Conoce MOVVE Wallet paso a paso.</p>
+            </div>
+        </a>
+        <a href="tutoriales.html" class="card-link">
+            <div class="card card-glow-blue fade-up">
+                <h3>📚 Tutoriales Movve Wallet</h3>
+                <p>Conoce MOVVE Wallet paso a paso.</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- ================= ECOSISTEMA ================= -->
+<section class="section fade-up" id="ecosistema">
+    <h2 class="section-title">Ecosistema <span>MOVVE</span></h2>
+    <div class="cards">
+        <a href="crecimiento.html" class="card-link"><div class="card card-glow-green fade-up">🚀 Crecimiento</div></a>
+        <a href="inversion.html" class="card-link"><div class="card card-glow-blue fade-up">💰 Inversión</div></a>
+        <a href="comunidad.html" class="card-link"><div class="card card-glow-purple fade-up">🌎 Comunidad</div></a>
+    </div>
+</section>
+
+<!-- ================= PLAN EXPANSIÓN ================= -->
+<section class="section fade-up" id="plan-expansion">
+    <h2 class="section-title">Plan de <span>Expansión</span></h2>
+    <div class="stack-slider" id="stackSlider">
+        <!-- Tarjetas de expansión -->
+        <div class="stack-card"><img src="img1.jpg" alt="Fase 2"></div>
+        <div class="stack-card"><img src="img2.jpg" alt="Fase 3"></div>
+        <div class="stack-card"><img src="img3.jpg" alt="Fase 4"></div>
+        <div class="stack-card"><img src="img4.jpg" alt="Fase 1"></div>
+        <div class="stack-card"><img src="img5.jpg" alt="Fase 2"></div>
+        <div class="stack-card"><img src="img6.jpg" alt="Fase 3"></div>
+        <div class="stack-card"><img src="img7.jpg" alt="Fase 4"></div>
+        <div class="stack-card"><img src="img8.jpg" alt="Fase 1"></div>
+        <div class="stack-card"><img src="img9.jpg" alt="Fase 2"></div>
+        <div class="stack-card"><img src="img10.jpg" alt="Fase 3"></div>
+        <div class="stack-card"><img src="img11.jpg" alt="Fase 4"></div>
+    </div>
+</section>
+
+<!-- ================= GALERÍA ================= -->
+<section class="section fade-up" id="galeria-fotos">
+    <h2 class="section-title">Galería <span>MOVVE</span></h2>
+    <div class="album">
+        <img src="foto1.jpg" class="gallery-image active" alt="Foto 1">
+        <img src="foto2.jpg" class="gallery-image" alt="Foto 2">
+        <img src="foto3.jpg" class="gallery-image" alt="Foto 3">
+        <img src="foto4.jpg" class="gallery-image" alt="Foto 4">
+        <img src="foto5.jpg" class="gallery-image" alt="Foto 5">
+        <img src="foto6.jpg" class="gallery-image" alt="Foto 6">
+        <img src="foto7.jpg" class="gallery-image" alt="Foto 7">
+    </div>
+    <div class="controls">
+        <button class="prev-btn">&#10094;</button>
+        <button class="next-btn">&#10095;</button>
+    </div>
+    <div class="dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+        <span class="dot" data-index="5"></span>
+        <span class="dot" data-index="6"></span>
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="cta" style="text-align:center;margin:60px auto;">
+    <a class="btn-verde" href="https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8" target="_blank">
+        <i class="fas fa-rocket"></i> Únete a MOVVE WALLET
+    </a>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div id="mediaModal" onclick="closeMedia()">
+    <span class="modal-close">&times;</span>
+    <div id="modalContent"></div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    &copy; 2026 <span>MOVVE PLANETA</span>. Todos los derechos reservados.
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="script.js"></script>
+
+</body>
+</html>
