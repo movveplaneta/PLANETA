@@ -123,34 +123,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se ejecuta solo cada 3500ms (3.5 segundos)
         setInterval(autoMove, 3500);
     }
-
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('welcomeModal');
-    const btnAprende = document.getElementById('btnAprende');
-    const btnRegistro = document.getElementById('btnRegistro');
-    const closeBtn = document.getElementById('closeModal');
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("welcomeModal");
+    const btnAprende = document.getElementById("btnAprende");
+    const btnRegistro = document.getElementById("btnRegistro");
 
-    // ACCIÓN 1: "Aprende sobre Movve Wallet" 
-    // Cierra el modal y permite ver la página principal
-    btnAprende.addEventListener('click', (e) => {
-        // Si usas un enlace ancla (como #wallet-info), el navegador se moverá allí automáticamente
-        modal.style.opacity = '0';
+    // 1. Verificar si ya ha visitado la página antes
+    if (!localStorage.getItem("movve_user_visited")) {
+        // Si NO existe la marca, mostramos el modal
+        modal.style.display = "flex";
+    } else {
+        // Si YA existe, nos aseguramos de que el modal esté oculto
+        modal.style.display = "none";
+    }
+
+    // 2. Función para cerrar el modal y marcar como "visitado"
+    function cerrarYMarcar() {
+        modal.style.opacity = "0"; // Efecto de desvanecimiento
         setTimeout(() => {
-            modal.style.display = 'none';
-        }, 500); // Espera a que termine la animación de transparencia
-    });
+            modal.style.display = "none";
+            // Guardamos en la memoria del navegador que ya entró
+            localStorage.setItem("movve_user_visited", "true");
+        }, 300);
+    }
 
-    // ACCIÓN 2: "Registrarme ahora" 
-    // Abre el enlace que tú decidas (aquí pones el link de tu formulario)
-    btnRegistro.addEventListener('click', () => {
-        const urlRegistro = 'https://app.movvewallet.com/register/TBwPNoUJCphFFh52NaizpC8kAgy5xAmHi8'; // <--- CAMBIA ESTO
-        window.open(urlRegistro, '_blank'); // Lo abre en una pestaña nueva
-    });
-
-    // LA "X" para cerrar
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
+    // Eventos al hacer clic en los botones
+    btnAprende.addEventListener("click", cerrarYMarcar);
+    btnRegistro.addEventListener("click", cerrarYMarcar);
 });
