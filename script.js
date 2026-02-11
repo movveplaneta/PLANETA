@@ -153,3 +153,67 @@ document.addEventListener("DOMContentLoaded", function() {
     btnAprende.addEventListener("click", cerrarYMarcar);
     btnRegistro.addEventListener("click", cerrarYMarcar);
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    const zoneID = "10595987"; // TU ID REAL
+    const frequencyCookie = "movve_popunder";
+    const frequencyDays = 1;
+
+    function setCookie(name,value,days){
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+    }
+
+    function getCookie(name){
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    function isMobile(){
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function loadMonetag(){
+        const s = document.createElement("script");
+        s.src = "https://al5sm.com/tag.min.js";
+        s.dataset.zone = zoneID;
+        s.async = true;
+        document.body.appendChild(s);
+    }
+
+    function initMonetag(){
+        if(!getCookie(frequencyCookie)){
+            setCookie(frequencyCookie,"1",frequencyDays);
+
+            if(isMobile()){
+                document.addEventListener("click", function once(){
+                    loadMonetag();
+                    document.removeEventListener("click", once);
+                });
+            } else {
+                loadMonetag();
+            }
+        }
+    }
+
+    // SI YA ACEPTÓ COOKIES
+    if(localStorage.getItem("cookiesAccepted") === "true"){
+        banner.style.display = "none";
+        initMonetag();
+    }
+
+    // BOTÓN ACEPTAR
+    acceptBtn.addEventListener("click", function(){
+        localStorage.setItem("cookiesAccepted","true");
+        banner.style.display = "none";
+        initMonetag();
+    });
+
+});
+
