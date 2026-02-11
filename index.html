@@ -198,7 +198,14 @@
         Al continuar navegando aceptas nuestra política.
     </p>
     <button onclick="aceptarCookies()">Aceptar</button>
-</div>
+    
+<script>
+function aceptarCookies(){
+    localStorage.setItem("cookiesAccepted","true");
+    document.getElementById("cookie-banner").style.display = "none";
+    location.reload();
+}
+</script>
     
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -302,6 +309,7 @@ if(localStorage.getItem("cookiesAccepted") === "true"){
 
 </body>
 </html>
+
 
 
 
