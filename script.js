@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.getElementById("accept-cookies");
 
-    const zoneID = "10595987"; // TU ID REAL
+    const zoneID = "209613"; // TU ID REAL
     const frequencyCookie = "movve_popunder";
     const frequencyDays = 1;
 
@@ -180,13 +180,33 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function loadMonetag(){
-        const s = document.createElement("script");
-        s.src = "https://al5sm.com/tag.min.js";
-        s.dataset.zone = zoneID;
-        s.async = true;
-        document.body.appendChild(s);
-    }
 
+    // Evitar cargarlo dos veces
+    if(document.getElementById("monetag-script")) return;
+
+    const s = document.createElement("script");
+
+    s.id = "monetag-script"; // Identificador único
+    s.src = "https://al5sm.com/tag.min.js";
+    s.dataset.zone = zoneID;
+    s.async = true;
+    s.defer = true;
+
+    // Mejor compatibilidad móvil
+    s.setAttribute("data-cfasync", "false");
+
+    // Confirmar que cargó correctamente
+    s.onload = function(){
+        console.log("Monetag cargado correctamente");
+    };
+
+    s.onerror = function(){
+        console.log("Error cargando Monetag");
+    };
+
+    document.body.appendChild(s);
+}
+    
     function initMonetag(){
         if(!getCookie(frequencyCookie)){
             setCookie(frequencyCookie,"1",frequencyDays);
@@ -216,4 +236,5 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 });
+
 
