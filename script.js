@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ========================== */
 
     const directLink1 = "https://omg10.com/4/10600695"; // Principal
-    const directLink2 = "https://omg10.com/4/SEGUNDO_LINK_AQUI"; // Segundo
+    const directLink2 = "https://omg10.com/4/10600809"; // Segundo
 
     /* =========================
        UTILIDADES
@@ -294,11 +294,17 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     if(acceptBtn){
-        acceptBtn.addEventListener("click", function(){
-            localStorage.setItem("cookiesAccepted","true");
-            if(banner) banner.style.display = "none";
-            initMonetag();
-        });
-    }
+       acceptBtn.addEventListener("click", function(){
+
+    // 1️⃣ Guardamos que aceptó cookies
+    localStorage.setItem("cookiesAccepted", "true");
+
+    // 2️⃣ Ocultamos el banner
+    banner.style.display = "none";
+
+    // 3️⃣ Iniciamos Monetag
+    initMonetag();
 
 });
+
+
