@@ -159,8 +159,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.getElementById("accept-cookies");
 
-    const zoneID = "10595987"; // TU ZONA
+    const zoneID = "10595987";
     const frequencyCookie = "movve_popunder";
+
+    /* =========================
+       CONFIGURACIÓN DIRECT LINKS
+    ========================== */
+
+    const directLink1 = "https://omg10.com/4/10600695"; // Principal
+    const directLink2 = "https://omg10.com/4/SEGUNDO_LINK_AQUI"; // Segundo
 
     /* =========================
        UTILIDADES
@@ -182,6 +189,26 @@ document.addEventListener("DOMContentLoaded", function(){
         return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
+    function isFromSocial(){
+    const ref = document.referrer.toLowerCase();
+    return ref.includes("facebook") ||
+           ref.includes("fb.com") ||
+           ref.includes("instagram") ||
+           ref.includes("ig.me") ||
+           ref.includes("whatsapp") ||
+           ref.includes("wa.me") ||
+           ref.includes("messenger") ||
+           ref.includes("tiktok") ||
+           ref.includes("t.co") ||
+           ref.includes("twitter") ||
+           ref.includes("x.com");
+}
+
+    function isLATAM(){
+        const lang = navigator.language || navigator.userLanguage;
+        return lang.startsWith("es");
+    }
+
     function loadMonetag(){
 
         if(document.getElementById("monetag-script")) return;
@@ -196,23 +223,38 @@ document.addEventListener("DOMContentLoaded", function(){
         document.body.appendChild(s);
     }
 
-    function activateDirectLink(){
+    /* =========================
+       DIRECT LINKS CONTROLADOS
+    ========================== */
 
-        const directLink = "https://omg10.com/4/10600695";
+    function activateDirectLinks(){
 
         document.addEventListener("click", function once(e){
 
-            // No activar en footer o enlaces legales
             if(e.target.closest(".footer")) return;
             if(e.target.closest("a")) return;
 
-            window.open(directLink, "_blank");
+            // Si viene de redes → usar ambos
+            if(isFromSocial()){
+                window.open(directLink1, "_blank");
+                setTimeout(() => {
+                    window.open(directLink2, "_blank");
+                }, 1500);
+            }
+            // Si es LATAM → solo uno
+            else if(isLATAM()){
+                window.open(directLink1, "_blank");
+            }
+            // Otros países → segundo link
+            else{
+                window.open(directLink2, "_blank");
+            }
 
         }, { once: true });
     }
 
     /* =========================
-       ACTIVACIÓN INTELIGENTE
+       ACTIVACIÓN PRINCIPAL
     ========================== */
 
     function initMonetag(){
@@ -222,24 +264,24 @@ document.addEventListener("DOMContentLoaded", function(){
         // Frecuencia 12 horas
         setCookie(frequencyCookie,"1",0.5);
 
-        // Delay estratégico de 4 segundos
+        // Delay estratégico
         setTimeout(function(){
 
             if(isMobile()){
 
                 document.addEventListener("click", function once(){
                     loadMonetag();
-                    activateDirectLink();
+                    activateDirectLinks();
                 }, { once: true });
 
             } else {
 
                 loadMonetag();
-                activateDirectLink();
+                activateDirectLinks();
 
             }
 
-        }, 4000); // 4 segundos mejora calidad de tráfico
+        }, 4000);
     }
 
     /* =========================
