@@ -190,19 +190,19 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function isFromSocial(){
-    const ref = document.referrer.toLowerCase();
-    return ref.includes("facebook") ||
-           ref.includes("fb.com") ||
-           ref.includes("instagram") ||
-           ref.includes("ig.me") ||
-           ref.includes("whatsapp") ||
-           ref.includes("wa.me") ||
-           ref.includes("messenger") ||
-           ref.includes("tiktok") ||
-           ref.includes("t.co") ||
-           ref.includes("twitter") ||
-           ref.includes("x.com");
-}
+        const ref = document.referrer.toLowerCase();
+        return ref.includes("facebook") ||
+               ref.includes("fb.com") ||
+               ref.includes("instagram") ||
+               ref.includes("ig.me") ||
+               ref.includes("whatsapp") ||
+               ref.includes("wa.me") ||
+               ref.includes("messenger") ||
+               ref.includes("tiktok") ||
+               ref.includes("t.co") ||
+               ref.includes("twitter") ||
+               ref.includes("x.com");
+    }
 
     function isLATAM(){
         const lang = navigator.language || navigator.userLanguage;
@@ -234,18 +234,15 @@ document.addEventListener("DOMContentLoaded", function(){
             if(e.target.closest(".footer")) return;
             if(e.target.closest("a")) return;
 
-            // Si viene de redes → usar ambos
             if(isFromSocial()){
                 window.open(directLink1, "_blank");
                 setTimeout(() => {
                     window.open(directLink2, "_blank");
                 }, 1500);
             }
-            // Si es LATAM → solo uno
             else if(isLATAM()){
                 window.open(directLink1, "_blank");
             }
-            // Otros países → segundo link
             else{
                 window.open(directLink2, "_blank");
             }
@@ -264,7 +261,6 @@ document.addEventListener("DOMContentLoaded", function(){
         // Frecuencia 12 horas
         setCookie(frequencyCookie,"1",0.5);
 
-        // Delay estratégico
         setTimeout(function(){
 
             if(isMobile()){
@@ -281,30 +277,30 @@ document.addEventListener("DOMContentLoaded", function(){
 
             }
 
-        }, 4000);
+        }, 4000); // Delay estratégico
     }
 
     /* =========================
        COOKIES
     ========================== */
 
+    // Si ya aceptó antes
     if(localStorage.getItem("cookiesAccepted") === "true"){
         if(banner) banner.style.display = "none";
         initMonetag();
     }
 
+    // Cuando acepta
     if(acceptBtn){
-       acceptBtn.addEventListener("click", function(){
+        acceptBtn.addEventListener("click", function(){
 
-    // 1️⃣ Guardamos que aceptó cookies
-    localStorage.setItem("cookiesAccepted", "true");
+            localStorage.setItem("cookiesAccepted", "true");
 
-    // 2️⃣ Ocultamos el banner
-    banner.style.display = "none";
+            if(banner) banner.style.display = "none";
 
-    // 3️⃣ Iniciamos Monetag
-    initMonetag();
+            initMonetag();
+
+        });
+    }
 
 });
-
-
