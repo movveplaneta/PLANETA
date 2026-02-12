@@ -159,9 +159,12 @@ document.addEventListener("DOMContentLoaded", function(){
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.getElementById("accept-cookies");
 
-    const zoneID = "209613"; // TU ID REAL
+    const zoneID = "10595987"; // TU ZONA
     const frequencyCookie = "movve_popunder";
-    const frequencyDays = 1;
+
+    /* =========================
+       UTILIDADES
+    ========================== */
 
     function setCookie(name,value,days){
         const d = new Date();
@@ -181,60 +184,79 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function loadMonetag(){
 
-    // Evitar cargarlo dos veces
-    if(document.getElementById("monetag-script")) return;
+        if(document.getElementById("monetag-script")) return;
 
-    const s = document.createElement("script");
+        const s = document.createElement("script");
+        s.id = "monetag-script";
+        s.src = "https://al5sm.com/tag.min.js";
+        s.dataset.zone = zoneID;
+        s.async = true;
+        s.defer = true;
 
-    s.id = "monetag-script"; // Identificador único
-    s.src = "https://al5sm.com/tag.min.js";
-    s.dataset.zone = zoneID;
-    s.async = true;
-    s.defer = true;
+        document.body.appendChild(s);
+    }
 
-    // Mejor compatibilidad móvil
-    s.setAttribute("data-cfasync", "false");
+    function activateDirectLink(){
 
-    // Confirmar que cargó correctamente
-    s.onload = function(){
-        console.log("Monetag cargado correctamente");
-    };
+        const directLink = "https://omg10.com/4/10600695";
 
-    s.onerror = function(){
-        console.log("Error cargando Monetag");
-    };
+        document.addEventListener("click", function once(e){
 
-    document.body.appendChild(s);
-}
-    
+            // No activar en footer o enlaces legales
+            if(e.target.closest(".footer")) return;
+            if(e.target.closest("a")) return;
+
+            window.open(directLink, "_blank");
+
+        }, { once: true });
+    }
+
+    /* =========================
+       ACTIVACIÓN INTELIGENTE
+    ========================== */
+
     function initMonetag(){
-        if(!getCookie(frequencyCookie)){
-            setCookie(frequencyCookie,"1",frequencyDays);
+
+        if(getCookie(frequencyCookie)) return;
+
+        // Frecuencia 12 horas
+        setCookie(frequencyCookie,"1",0.5);
+
+        // Delay estratégico de 4 segundos
+        setTimeout(function(){
 
             if(isMobile()){
+
                 document.addEventListener("click", function once(){
                     loadMonetag();
-                    document.removeEventListener("click", once);
-                });
+                    activateDirectLink();
+                }, { once: true });
+
             } else {
+
                 loadMonetag();
+                activateDirectLink();
+
             }
-        }
+
+        }, 4000); // 4 segundos mejora calidad de tráfico
     }
 
-    // SI YA ACEPTÓ COOKIES
+    /* =========================
+       COOKIES
+    ========================== */
+
     if(localStorage.getItem("cookiesAccepted") === "true"){
-        banner.style.display = "none";
+        if(banner) banner.style.display = "none";
         initMonetag();
     }
 
-    // BOTÓN ACEPTAR
-    acceptBtn.addEventListener("click", function(){
-        localStorage.setItem("cookiesAccepted","true");
-        banner.style.display = "none";
-        initMonetag();
-    });
+    if(acceptBtn){
+        acceptBtn.addEventListener("click", function(){
+            localStorage.setItem("cookiesAccepted","true");
+            if(banner) banner.style.display = "none";
+            initMonetag();
+        });
+    }
 
 });
-
-
