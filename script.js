@@ -305,3 +305,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
+document.getElementById("accept-cookies").addEventListener("click", function() {
+    localStorage.setItem("cookiesAccepted", "true");
+    document.getElementById("mainAd").style.display = "block";
+    if(window.innerWidth <= 768){
+        document.getElementById("mobileAd").style.display = "block";
+    }
+});
+
+window.addEventListener("DOMContentLoaded", function(){
+    if(localStorage.getItem("cookiesAccepted") === "true"){
+        document.getElementById("mainAd").style.display = "block";
+        if(window.innerWidth <= 768){
+            document.getElementById("mobileAd").style.display = "block";
+        }
+    }
+});
+
+
