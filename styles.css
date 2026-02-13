@@ -1795,4 +1795,49 @@ body {
     }
 }
 
+/* ================================================================
+   CONTENEDORES DE PUBLICIDAD (AD-SYSTEM)
+   ================================================================ */
+
+.ad-container {
+    margin: 80px auto;
+    max-width: 1100px;
+    padding: 30px;
+    text-align: center;
+    
+    /* Estilo de cristal sutil para que el anuncio se vea integrado */
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+/* Texto de ayuda por si quieres poner "Publicidad" arriba del anuncio */
+.ad-container::before {
+    content: "PUBLICIDAD";
+    display: block;
+    font-size: 0.7rem;
+    color: #64748b;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.mobile-only-ad {
+    display: none; /* Oculto en escritorio */
+}
+
+/* Configuración para móviles */
+@media (max-width: 768px) {
+    .ad-container {
+        margin: 40px auto;
+        padding: 15px;
+        width: 95%;
+    }
+
+    .mobile-only-ad {
+        display: block; /* Se activa solo en móviles */
+        margin: 40px auto;
+        text-align: center;
+    }
+}
 
