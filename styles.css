@@ -1,14 +1,3 @@
-/* ================= VARIABLES GLOBALES ================= */
-:root {
-    --primary-green: #00ff88;
-    --accent-blue: #38bdf8;
-    --accent-purple: #a855f7;
-    --dark-bg: #050810;
-    --glass: rgba(15, 23, 42, 0.7);
-    --text-white: #f8fafc;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 /* ================= RESET Y BASE ================= */
 * {
     margin: 0;
@@ -268,7 +257,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: #00ff88;
+    color: #00FF7F;
 }
 
 .footer-social {
@@ -293,8 +282,8 @@ body {
 
 .footer-social a:hover {
     background: rgba(0, 255, 136, 0.1);
-    border-color: #00ff88;
-    color: #00ff88;
+    border-color: #00FF7F;
+    color: #00FF7F;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
 }
@@ -332,7 +321,7 @@ body {
 
 /* ================= CONFIGURACIÓN GENERAL ================= */
 :root {
-    --primary-green: #00ff88;
+    --primary-green: #00FF7F;
     --dark-bg: #0f172a;
     --card-bg: #1e293b;
     --text-white: #f8fafc;
@@ -501,30 +490,6 @@ body {
     }
 }
 
-/* ================= VARIABLES Y RESET ================= */
-:root {
-    --primary-green: #00ff88;
-    --dark-bg: #0f172a;
-    --card-bg: #1e293b;
-    --text-white: #f8fafc;
-    --text-gray: #94a3b8;
-    --transition: all 0.3s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: var(--text-white);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
 
 /* ================= NAVBAR ================= */
 .navbar {
@@ -656,7 +621,7 @@ footer span {
 
 /* ================= VARIABLES Y RESET ================= */
 :root {
-    --primary-green: #00ff88;
+    --primary-green: #00FF7F;
     --dark-bg: #0b0f1a;
     --glass-bg: rgba(30, 41, 59, 0.7);
     --text-white: #f8fafc;
@@ -867,7 +832,7 @@ body {
 
 /* ================= VARIABLES Y BASE ================= */
 :root {
-    --primary-green: #00ff88;
+    --primary-green: #00FF7F;
     --dark-bg: #0b0f1a;
     --glass-bg: rgba(30, 41, 59, 0.75);
     --text-white: #f8fafc;
@@ -1296,7 +1261,7 @@ body {
 }
 
 .modal-title span {
-    color: #00ff88; /* Verde neón característico */
+    color: #00FF7F; /* Verde neón característico */
     text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
 }
 
@@ -1353,7 +1318,7 @@ body {
 
 /* Botón Registrarme (Principal) */
 .btn-primary {
-    background: #00ff88;
+    background: #00FF7F;
     color: #010a01;
     box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
 }
@@ -1903,5 +1868,152 @@ body {
     font-weight: bold;
     color: #4CFF2E; /* verde destacado */
     letter-spacing: 2px;
+}
+
+/* ================================================================
+   RAIL SLIDER - HIGH FIDELITY (LONG & SHARP)
+   ================================================================ */
+.rail-slider {
+    position: relative;
+    /* Controlamos el ancho para que la imagen no se "estire" infinitamente */
+    width: 95%;
+    max-width: 1000px; /* Ancho máximo para preservar calidad */
+    margin: 40px auto;
+}
+
+.rail-container {
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: #000; /* Fondo negro por si la imagen tarda en cargar */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+}
+
+.rail-track {
+    display: flex;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wagon {
+    min-width: 100%;
+    position: relative;
+    /* Usamos una altura fija pero equilibrada */
+    height: 650px; 
+    overflow: hidden;
+}
+
+.wagon img {
+    width: 100%;
+    height: 100%;
+    /* 'cover' asegura que la imagen llene el espacio sin deformarse */
+    object-fit: cover; 
+    /* 'object-position: center' mantiene lo importante en el medio */
+    object-position: center; 
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto sutil al pasar el mouse para sentir la calidad */
+.wagon:hover img {
+    transform: scale(1.03);
+}
+
+/* Capa de diseño para el texto largo */
+.wagon-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px;
+    background: linear-gradient(
+        to top, 
+        rgba(0, 0, 0, 0.95) 0%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        transparent 100%
+    );
+    color: white;
+}
+
+.wagon-info h2 {
+    font-size: 3.5rem; /* Grande pero elegante */
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 15px;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.wagon-info h2 span {
+    color: var(--primary-green);
+}
+
+.wagon-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #e0e0e0;
+    border-left: 3px solid var(--primary-green);
+    padding-left: 20px;
+}
+
+/* NAVEGACIÓN REFINADA */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.nav:hover {
+    background: var(--primary-green);
+    color: #000;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* INDICADORES */
+.stations {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 12px;
+}
+
+.station {
+    width: 30px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+.station.active {
+    background: var(--primary-green);
+    width: 60px;
+}
+
+/* MÓVIL: AJUSTE PARA NO PERDER NITIDEZ */
+@media (max-width: 768px) {
+    .wagon {
+        height: 450px; /* Reducimos altura en móvil para mantener proporción */
+    }
+    .wagon-info h2 {
+        font-size: 2.2rem;
+    }
+    .wagon-info {
+        padding: 30px;
+    }
 }
 
