@@ -116,11 +116,16 @@ body {
 
 .hero-overlay {
     position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    background: #ffffff;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Capa doble: Oscuridad uniforme + Degradado hacia el fondo */
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 8, 16, 0.7) 0%,   /* Oscuro arriba */
+        rgba(5, 8, 16, 0.5) 50%,  /* Un poco más claro al centro */
+        rgba(5, 8, 16, 0.9) 100%  /* Muy oscuro abajo para los botones */
+    );
+    z-index: -1;
 }
 
 /.hero-content h1 {
@@ -2047,6 +2052,7 @@ body {
         padding: 30px;
     }
 }
+
 
 
 
