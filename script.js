@@ -322,4 +322,128 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 });
 
+/**
+ * MOVVE RAIL SLIDER - Core Engine
+ * Maneja navegación, autoplay y gestos táctiles.
+ */
+
+const RailSlider = (() => {
+    // Selectores del DOM
+    const track = document.getElementById("railTrack");
+    const wagons = document.querySelectorAll(".wagon");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const stationsContainer = document.getElementById("stations");
+
+    // Estado del Slider
+    let state = {
+        index: 0,
+        autoPlayDelay: 5000,
+        timer: null,
+        isDragging: false,
+        startX: 0,
+        threshold: 50 // Sensibilidad del swipe
+    };
+
+    // --- INICIALIZACIÓN ---
+    const init = () => {
+        createStations();
+        setupEventListeners();
+        startAutoplay();
+    };
+
+    // Crear indicadores (estaciones) dinámicamente
+    const createStations = () => {
+        wagons.forEach((_, i) => {
+            const dot = document.createElement("div");
+            dot.classList.add("station");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => moveToSlide(i));
+            stationsContainer.appendChild(dot);
+        });
+    };
+
+    // --- LÓGICA DE NAVEGACIÓN ---
+    const updateUI = () => {
+        // Mover el track
+        track.style.transform = `translateX(-${state.index * 100}%)`;
+        
+        // Actualizar estaciones
+        const stations = document.querySelectorAll(".station");
+        stations.forEach((dot, i) => {
+            dot.classList.toggle("active", i === state.index);
+        });
+    };
+
+    const moveToSlide = (i) => {
+        state.index = i;
+        updateUI();
+        resetAutoplay();
+    };
+
+    const nextSlide = () => {
+        state.index = (state.index + 1) % wagons.length;
+        updateUI();
+    };
+
+    const prevSlide = () => {
+        state.index = (state.index - 1 + wagons.length) % wagons.length;
+        updateUI();
+    };
+
+    // --- AUTOPLAY ---
+    const startAutoplay = () => {
+        state.timer = setInterval(nextSlide, state.autoPlayDelay);
+    };
+
+    const resetAutoplay = () => {
+        clearInterval(state.timer);
+        startAutoplay();
+    };
+
+    // --- GESTOS (SWIPE & DRAG) ---
+    const handleDragStart = (e) => {
+        state.isDragging = true;
+        state.startX = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
+        track.style.cursor = "grabbing";
+    };
+
+    const handleDragEnd = (e) => {
+        if (!state.isDragging) return;
+        state.isDragging = false;
+        track.style.cursor = "grab";
+
+        const endX = e.type.includes("mouse") ? e.pageX : e.changedTouches[0].clientX;
+        const diff = endX - state.startX;
+
+        if (Math.abs(diff) > state.threshold) {
+            diff > 0 ? prevSlide() : nextSlide();
+        }
+    };
+
+    // --- EVENT LISTENERS ---
+    const setupEventListeners = () => {
+        // Botones
+        nextBtn?.addEventListener("click", nextSlide);
+        prevBtn?.addEventListener("click", prevSlide);
+
+        // Mouse Events
+        track.addEventListener("mousedown", handleDragStart);
+        window.addEventListener("mouseup", handleDragEnd);
+
+        // Touch Events
+        track.addEventListener("touchstart", handleDragStart, { passive: true });
+        track.addEventListener("touchend", handleDragEnd);
+
+        // Pausar autoplay si el usuario está encima (opcional para UX)
+        track.addEventListener("mouseenter", () => clearInterval(state.timer));
+        track.addEventListener("mouseleave", startAutoplay);
+    };
+
+    return { init };
+})();
+
+// Iniciar cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", RailSlider.init);
+
 
