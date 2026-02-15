@@ -1877,7 +1877,7 @@ body {
     position: relative;
     /* Controlamos el ancho para que la imagen no se "estire" infinitamente */
     width: 95%;
-    max-width: 1000px; /* Ancho máximo para preservar calidad */
+    max-width: 600px; /* Ancho máximo para preservar calidad */
     margin: 40px auto;
 }
 
@@ -2007,7 +2007,7 @@ body {
 /* MÓVIL: AJUSTE PARA NO PERDER NITIDEZ */
 @media (max-width: 768px) {
     .wagon {
-        height: 450px; /* Reducimos altura en móvil para mantener proporción */
+        height: 400px; /* Reducimos altura en móvil para mantener proporción */
     }
     .wagon-info h2 {
         font-size: 2.2rem;
@@ -2016,4 +2016,5 @@ body {
         padding: 30px;
     }
 }
+
 
