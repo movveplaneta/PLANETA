@@ -1912,7 +1912,7 @@ body {
 .rail-slider {
     position: relative;
     /* Controlamos el ancho para que la imagen no se "estire" infinitamente */
-    width: 80%;
+    width: 95%;
     max-width: 600px; /* Ancho máximo para preservar calidad */
     margin: 40px auto;
 }
@@ -2047,6 +2047,7 @@ body {
         padding: 30px;
     }
 }
+
 
 
 
